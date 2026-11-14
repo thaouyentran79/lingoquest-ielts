@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingoQuest IELTS - Lộ Trình Vừa Học Vừa Chill</title>
+  
+  <!-- Phông chữ Google Fonts hiện đại -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Chính -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Thư viện Pháo hoa ăn mừng miễn phí -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- ==========================================
+       THANH ĐIỀU HƯỚNG TRÊN CÙNG (NAVBAR)
+       ========================================== -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo-area" onclick="location.reload()">
+        <div class="logo-icon">👑</div>
+        <div>
+          <div class="logo-title">LingoQuest IELTS</div>
+          <div class="logo-sub">EdTech Gamified Learning</div>
+        </div>
+      </div>
+
+      <!-- Khung chỉ số Game hóa (Streak, XP, Rank) -->
+      <div class="stats-group">
+        <div class="stat-pill">
+          <span class="stat-fire">🔥</span>
+          <span id="stat-streak">3 Ngày</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-xp">⚡</span>
+          <span id="stat-xp">150 XP</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-rank">👑</span>
+          <span id="stat-rank">Chiến Binh Từ Vựng</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       HERO BANNER & THANH TIẾN ĐỘ TỔNG QUAN
+       ========================================== -->
+  <section class="hero-section">
+    <div class="hero-greeting">
+      <span>✨ Trải nghiệm học IELTS thế hệ mới 100% Free</span>
+    </div>
+    <h1 class="hero-title">
+      Học Tiếng Anh Qua <span class="gradient-text">Âm Nhạc, Thời Trang & Công Nghệ</span>
+    </h1>
+    <p class="hero-subtitle">
+      Tạm biệt ngữ pháp khô khan! Lướt web, nghe nhạc US-UK hot trend, đọc tin công nghệ & thời trang quốc tế để nạp trọn bộ từ vựng Band 7.5+ mỗi ngày.
+    </p>
+
+    <!-- Thẻ Tiến độ Lộ trình -->
+    <div class="overall-progress-card">
+      <div class="progress-header">
+        <span>🎯 Tiến độ chinh phục Lộ trình</span>
+        <span id="progress-percentage-text" style="color: #38bdf8;">17%</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="overall-progress-bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       BỘ LỌC CHỦ ĐỀ (TRACK FILTERS)
+       ========================================== -->
+  <div class="track-filters">
+    <button class="filter-btn active" data-filter="all">
+      <span>🌟</span> Tất cả chặng
+    </button>
+    <button class="filter-btn" data-filter="music">
+      <span>🎵</span> Âm Nhạc US-UK
+    </button>
+    <button class="filter-btn" data-filter="fashion">
+      <span>👗</span> Thời Trang & Lifestyle
+    </button>
+    <button class="filter-btn" data-filter="tech">
+      <span>🚀</span> Công Nghệ & ITS
+    </button>
+  </div>
+
+  <!-- ==========================================
+       BẢN ĐỒ LỘ TRÌNH HỌC TẬP (ROADMAP CANVAS)
+       ========================================== -->
+  <main class="roadmap-container">
+    <div class="roadmap-trail" id="roadmap-trail">
+      <!-- Các Node chặng sẽ được nạp tự động bởi JavaScript -->
+    </div>
+  </main>
+
+  <!-- ==========================================
+       WIDGET BẢN TIN XU HƯỚNG TỰ ĐỘNG (NEWS FEED)
+       ========================================== -->
+  <section class="news-feed-section">
+    <div class="news-feed-header">
+      <h3>📡 Điểm Tin Nóng & Từ Vựng Thời Thượng</h3>
+      <span style="font-size: 0.85rem; color: #94a3b8;">Cập nhật tự động mỗi ngày</span>
+    </div>
+    <div class="news-grid" id="trending-news-grid">
+      <!-- Thẻ tin tức nạp từ data.js -->
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CỬA SỔ HỌC TẬP TƯƠNG TÁC (LESSON MODAL)
+       ========================================== -->
+  <div class="lesson-modal-overlay" id="lesson-modal">
+    <div class="lesson-modal-container">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-header-info">
+          <h3 id="modal-stage-title">Chặng Học</h3>
+          <p id="modal-stage-subtitle">Thông tin chủ đề</p>
+        </div>
+        <button class="modal-close-btn" id="modal-close-btn" title="Đóng">✕</button>
+      </div>
+
+      <!-- Modal Tab Bar -->
+      <div class="modal-tab-bar">
+        <button class="modal-tab-btn active" data-tab="tab-media">
+          <span>🎧</span> Khám Phá & Đọc Hiểu
+        </button>
+        <button class="modal-tab-btn" data-tab="tab-flashcards">
+          <span>🃏</span> Flashcard 3D
+        </button>
+        <button class="modal-tab-btn" data-tab="tab-matching">
+          <span>⚡</span> Nối Từ Siêu Tốc
+        </button>
+        <button class="modal-tab-btn" data-tab="tab-gapfill">
+          <span>🧩</span> Thử Thách Ngữ Cảnh
+        </button>
+      </div>
+
+      <!-- Modal Body Scrollable -->
+      <div class="modal-body-scroll">
+        
+        <!-- TAB 1: MEDIA & ĐỌC HIỂU TƯƠNG TÁC -->
+        <div class="tab-content-panel" id="tab-media">
+          <div id="media-render-zone"></div>
+          <div id="content-details-zone"></div>
+        </div>
+
+        <!-- TAB 2: FLASHCARD 3D LẬT THẺ -->
+        <div class="tab-content-panel" id="tab-flashcards" style="display: none;">
+          <div style="text-align: center; margin-bottom: 1rem;">
+            <span id="flashcard-counter" style="font-weight: 700; color: #38bdf8;">Thẻ 1 / 4</span>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.25rem;">
+              💡 Chạm vào thẻ để lật xem nghĩa tiếng Việt & ví dụ IELTS nhé!
+            </p>
+          </div>
+
+          <div class="flashcard-stage">
+            <div class="flashcard-card" id="flashcard-card-inner">
+              <!-- Mặt trước thẻ -->
+              <div class="card-face card-front">
+                <span style="font-size: 0.8rem; color: #a78bfa; font-weight: 700;">FRONT • TỪ VỰNG</span>
+                <img id="card-front-img" class="card-img-thumb" src="" alt="Minh họa">
+                <div>
+                  <h2 class="card-word" id="card-front-word">Word</h2>
+                  <div class="card-ipa" id="card-front-ipa">/ipa/</div>
+                  <span id="card-front-pos" style="font-size: 0.85rem; color: #94a3b8;">(pos)</span>
+                </div>
+                <button class="speech-btn" id="card-speech-btn" title="Nghe phát âm chuẩn US">🔊</button>
+              </div>
+
+              <!-- Mặt sau thẻ -->
+              <div class="card-face card-back">
+                <div>
+                  <span style="font-size: 0.8rem; color: #f472b6; font-weight: 700;">BACK • NGHĨA & VÍ DỤ</span>
+                  <h3 id="card-back-meaning" style="color: #38bdf8; font-size: 1.35rem; margin: 0.85rem 0 0.5rem;">Nghĩa</h3>
+                  <div style="font-size: 0.95rem; color: #e2e8f0; font-style: italic; line-height: 1.5;" id="card-back-example">"Example sentence"</div>
+                </div>
+                <div style="background: rgba(0,0,0,0.3); padding: 0.75rem; border-radius: 12px; font-size: 0.85rem; color: #fbcfe8;">
+                  ✨ <b>Mẹo nhớ:</b> Lặp lại to từ này 2 lần cùng loa phát âm để não bộ ghi nhớ sâu hơn!
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nút điều khiển lùi/tiến thẻ -->
+          <div class="card-controls">
+            <button class="filter-btn" id="btn-prev-card">← Từ Trước</button>
+            <button class="filter-btn active" id="btn-next-card">Từ Tiếp Theo →</button>
+          </div>
+        </div>
+
+        <!-- TAB 3: NỐI TỪ SIÊU TỐC (SPEED MATCHING) -->
+        <div class="tab-content-panel" id="tab-matching" style="display: none;">
+          <div class="speed-match-arena">
+            <div class="speed-timer-bar">
+              <div>
+                <span style="font-size: 0.85rem; color: #94a3b8;">Thời gian còn lại:</span>
+                <span class="timer-countdown" id="speed-timer-count">30s</span>
+              </div>
+              <button class="filter-btn" id="btn-restart-matching" style="padding: 0.35rem 0.85rem; font-size: 0.8rem;">
+                🔄 Chơi lại
+              </button>
+            </div>
+            <p id="speed-status-msg" style="text-align: center; color: #38bdf8; font-size: 0.9rem; margin-bottom: 1rem;">
+              ⚡ Chọn 1 từ tiếng Anh và 1 nghĩa tiếng Việt tương ứng!
+            </p>
+            <div class="match-grid" id="matching-tiles-grid">
+              <!-- Gạch nối từ được nạp tự động -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: THỬ THÁCH NGỮ CẢNH (GAP-FILL) -->
+        <div class="tab-content-panel" id="tab-gapfill" style="display: none;">
+          <div class="gap-fill-arena">
+            <div class="gap-question-box" id="gap-question-text">
+              Câu hỏi thử thách ngữ cảnh...
+            </div>
+            <div class="gap-options-list" id="gap-options-container">
+              <!-- Danh sách lựa chọn -->
+            </div>
+            <div class="gap-feedback-box" id="gap-feedback-box">
+              <!-- Lời giải thích khi trả lời -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button class="btn-primary" id="btn-complete-stage">
+          <span>👑</span> Hoàn Thành Chặng & Nhận XP
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================
+       CHÂN TRANG (FOOTER)
+       ========================================== -->
+  <footer>
+    <p>👑 <b>LingoQuest IELTS</b> • Học tiếng Anh Gamified 100% Miễn Phí</p>
+    <p style="margin-top: 0.35rem; font-size: 0.8rem; color: #64748b;">
+      Thiết kế chuyên biệt cho Nữ hoàng • Trợ lý AI Bee đồng hành 24/7
+    </p>
+  </footer>
+
+  <!-- File dữ liệu và logic ứng dụng -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
