@@ -42,6 +42,11 @@ function loadBeeState() {
   } catch (e) {
     console.warn("Khởi tạo trạng thái mặc định");
   }
+
+  // Tương thích ngược: Đồng bộ bài hoàn thành từ v1 sang v2
+  if (beeState.completedLessons.includes("ielts-1") && !beeState.completedLessons.includes("stage-1")) {
+    beeState.completedLessons.push("stage-1");
+  }
 }
 
 function saveBeeState() {
@@ -274,78 +279,110 @@ let currentLessonQuizUserAnswers = {}; // { 0: 1, 1: 2, ... }
 let currentLessonQuizSubmitted = false;
 
 function openLessonModal(lesson) {
-  activeLessonObj = lesson;
-  currentLessonQuizUserAnswers = {};
-  currentLessonQuizSubmitted = false;
+  try {
+    if (!lesson) return;
+    activeLessonObj = lesson;
+    currentLessonQuizUserAnswers = {};
+    currentLessonQuizSubmitted = false;
 
-  document.getElementById('m-lesson-skill-tag').textContent = `${lesson.skillIcon} ${lesson.skill}`;
-  document.getElementById('m-lesson-name').textContent = lesson.title;
-  document.getElementById('m-lesson-html-content').innerHTML = lesson.content;
+    const skillTagEl = document.getElementById('m-lesson-skill-tag');
+    if (skillTagEl) skillTagEl.textContent = `${lesson.skillIcon || '✍️'} ${lesson.skill || 'IELTS'}`;
 
-  // 1. Render Bảng từ vựng mở rộng 6-8 từ
-  const vocabBox = document.getElementById('m-lesson-vocab-list');
-  vocabBox.innerHTML = lesson.vocab.map(v => `
-    <div style="background: #ffffff; border: 1px solid var(--bee-border); border-radius: 14px; padding: 0.85rem 1.15rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
-      <div style="flex-grow: 1;">
-        <span style="font-weight: 800; color: var(--bee-forest); font-size: 1.05rem;">${v.word}</span>
-        <span style="font-family: monospace; color: var(--bee-amber); margin: 0 0.4rem;">${v.ipa}</span>
-        <span style="font-size: 0.78rem; font-weight: 700; color: #0284c7; background: #e0f2fe; padding: 0.15rem 0.5rem; border-radius: 6px;">${v.pos || 'acad'}</span>: 
-        <span style="font-size: 0.92rem; color: #1f2937; font-weight: 600;">${v.meaning}</span>
-        <div style="font-size: 0.82rem; color: var(--bee-text-muted); font-style: italic; margin-top: 0.25rem;">Ví dụ: "${v.example}"</div>
-        ${v.synonyms ? `<div style="font-size: 0.78rem; color: #059669; font-weight: 700; margin-top: 0.2rem;">Synonyms: ${v.synonyms}</div>` : ''}
-      </div>
-      <div style="display: flex; gap: 0.4rem; flex-shrink: 0;">
-        <button class="btn-icon-action" onclick="speakEnglish('${v.word.replace(/'/g, "\\'")}')" title="Phát âm chuẩn">🔊</button>
-        <button class="btn-icon-action" onclick="addSingleWordToVault('${v.word.replace(/'/g, "\\'")}', '${v.ipa}', '${v.meaning.replace(/'/g, "\\'")}', '${v.example.replace(/'/g, "\\'")}')" title="Lưu vào kho từ">⭐</button>
-      </div>
-    </div>
-  `).join('');
+    const nameEl = document.getElementById('m-lesson-name');
+    if (nameEl) nameEl.textContent = lesson.title || 'Bài học IELTS';
 
-  // 2. Render 5 câu hỏi trắc nghiệm thực hành
-  const quizContainer = document.getElementById('m-lesson-multi-quiz-container');
-  quizContainer.innerHTML = '';
+    const contentEl = document.getElementById('m-lesson-html-content');
+    if (contentEl) contentEl.innerHTML = lesson.content || '';
 
-  const quizzes = lesson.quizzes || (lesson.quiz ? [lesson.quiz] : []);
+    // 1. Render Bảng từ vựng mở rộng 6-8 từ
+    const vocabBox = document.getElementById('m-lesson-vocab-list');
+    if (vocabBox) {
+      const vocabList = lesson.vocab || [];
+      vocabBox.innerHTML = vocabList.map(v => {
+        const word = v.word || '';
+        const ipa = v.ipa || '';
+        const pos = v.pos || 'acad';
+        const meaning = v.meaning || v.vi || '';
+        const example = v.example || '';
+        const synonyms = v.synonyms ? `<div style="font-size: 0.78rem; color: #059669; font-weight: 700; margin-top: 0.2rem;">Synonyms: ${v.synonyms}</div>` : '';
 
-  quizzes.forEach((qItem, qIdx) => {
-    const qCard = document.createElement('div');
-    qCard.className = 'multi-quiz-item';
-    qCard.id = `lesson-q-card-${qIdx}`;
+        return `
+          <div style="background: #ffffff; border: 1px solid var(--bee-border); border-radius: 14px; padding: 0.85rem 1.15rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;">
+            <div style="flex-grow: 1;">
+              <span style="font-weight: 800; color: var(--bee-forest); font-size: 1.05rem;">${word}</span>
+              <span style="font-family: monospace; color: var(--bee-amber); margin: 0 0.4rem;">${ipa}</span>
+              <span style="font-size: 0.78rem; font-weight: 700; color: #0284c7; background: #e0f2fe; padding: 0.15rem 0.5rem; border-radius: 6px;">${pos}</span>: 
+              <span style="font-size: 0.92rem; color: #1f2937; font-weight: 600;">${meaning}</span>
+              <div style="font-size: 0.82rem; color: var(--bee-text-muted); font-style: italic; margin-top: 0.25rem;">Ví dụ: "${example}"</div>
+              ${synonyms}
+            </div>
+            <div style="display: flex; gap: 0.4rem; flex-shrink: 0;">
+              <button class="btn-icon-action" onclick="speakEnglish('${word.replace(/'/g, "\\'")}')" title="Phát âm chuẩn">🔊</button>
+              <button class="btn-icon-action" onclick="addSingleWordToVault('${word.replace(/'/g, "\\'")}', '${ipa}', '${meaning.replace(/'/g, "\\'")}', '${example.replace(/'/g, "\\'")}')" title="Lưu vào kho từ">⭐</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
 
-    qCard.innerHTML = `
-      <div class="multi-quiz-q-title">
-        <span style="background: var(--bee-honey-light); color: var(--bee-dark-amber); border: 1px solid var(--bee-honey-border); border-radius: 8px; padding: 0.2rem 0.6rem; font-size: 0.85rem; font-weight: 800;">Câu ${qIdx + 1}</span>
-        <span>${qItem.question}</span>
-      </div>
-      <div class="multi-quiz-options" id="lesson-q-opts-${qIdx}">
-        ${qItem.options.map((opt, oIdx) => `
-          <button type="button" class="quiz-option-btn" id="l-opt-${qIdx}-${oIdx}" onclick="selectLessonQuizChoice(${qIdx}, ${oIdx})">
-            <b>${String.fromCharCode(65 + oIdx)}.</b> <span>${opt}</span>
-          </button>
-        `).join('')}
-      </div>
-      <div class="quiz-feedback-explanation" id="lesson-q-exp-${qIdx}" style="display: none;"></div>
-    `;
+    // 2. Render 5 câu hỏi trắc nghiệm thực hành
+    const quizContainer = document.getElementById('m-lesson-multi-quiz-container');
+    if (quizContainer) {
+      quizContainer.innerHTML = '';
+      const quizzes = lesson.quizzes || (lesson.quiz ? [lesson.quiz] : []);
 
-    quizContainer.appendChild(qCard);
-  });
+      quizzes.forEach((qItem, qIdx) => {
+        const qTitle = qItem.question || qItem.q || `Câu hỏi ${qIdx + 1}`;
+        const qOptions = qItem.options || qItem.opts || [];
 
-  // Reset nút nộp và tóm tắt điểm
-  const summaryBox = document.getElementById('m-lesson-quiz-score-summary');
-  summaryBox.style.display = 'none';
+        const qCard = document.createElement('div');
+        qCard.className = 'multi-quiz-item';
+        qCard.id = `lesson-q-card-${qIdx}`;
 
-  const btnSubmit = document.getElementById('btn-submit-lesson-multi-quiz');
-  btnSubmit.style.display = 'inline-block';
-  btnSubmit.textContent = '✓ Nộp Bài Kiểm Tra & Chấm Điểm';
+        qCard.innerHTML = `
+          <div class="multi-quiz-q-title">
+            <span style="background: var(--bee-honey-light); color: var(--bee-dark-amber); border: 1px solid var(--bee-honey-border); border-radius: 8px; padding: 0.2rem 0.6rem; font-size: 0.85rem; font-weight: 800;">Câu ${qIdx + 1}</span>
+            <span>${qTitle}</span>
+          </div>
+          <div class="multi-quiz-options" id="lesson-q-opts-${qIdx}">
+            ${qOptions.map((opt, oIdx) => `
+              <button type="button" class="quiz-option-btn" id="l-opt-${qIdx}-${oIdx}" onclick="selectLessonQuizChoice(${qIdx}, ${oIdx})">
+                <b>${String.fromCharCode(65 + oIdx)}.</b> <span>${opt}</span>
+              </button>
+            `).join('')}
+          </div>
+          <div class="quiz-feedback-explanation" id="lesson-q-exp-${qIdx}" style="display: none;"></div>
+        `;
 
-  const btnFinish = document.getElementById('btn-finish-lesson-action');
-  // Nếu đã từng hoàn thành bài này thì cho phép bấm, nếu chưa thì yêu cầu làm quiz trước
-  const isAlreadyDone = beeState.completedLessons.includes(lesson.id);
-  btnFinish.disabled = !isAlreadyDone;
-  btnFinish.style.opacity = isAlreadyDone ? '1' : '0.6';
-  btnFinish.style.cursor = isAlreadyDone ? 'pointer' : 'not-allowed';
+        quizContainer.appendChild(qCard);
+      });
+    }
 
-  document.getElementById('modal-lesson-dialog').classList.add('open');
+    // Reset nút nộp và tóm tắt điểm
+    const summaryBox = document.getElementById('m-lesson-quiz-score-summary');
+    if (summaryBox) summaryBox.style.display = 'none';
+
+    const btnSubmit = document.getElementById('btn-submit-lesson-multi-quiz');
+    if (btnSubmit) {
+      btnSubmit.style.display = 'inline-block';
+      btnSubmit.textContent = '✓ Nộp Bài Kiểm Tra & Chấm Điểm';
+    }
+
+    const btnFinish = document.getElementById('btn-finish-lesson-action');
+    if (btnFinish) {
+      const isAlreadyDone = beeState.completedLessons.includes(lesson.id);
+      btnFinish.disabled = !isAlreadyDone;
+      btnFinish.style.opacity = isAlreadyDone ? '1' : '0.6';
+      btnFinish.style.cursor = isAlreadyDone ? 'pointer' : 'not-allowed';
+    }
+
+    const modalEl = document.getElementById('modal-lesson-dialog');
+    if (modalEl) modalEl.classList.add('open');
+  } catch (err) {
+    console.error("Lỗi khi mở modal bài học:", err);
+    const modalEl = document.getElementById('modal-lesson-dialog');
+    if (modalEl) modalEl.classList.add('open');
+  }
 }
 
 function selectLessonQuizChoice(qIdx, oIdx) {
@@ -353,7 +390,6 @@ function selectLessonQuizChoice(qIdx, oIdx) {
   SoundSystem.click();
   currentLessonQuizUserAnswers[qIdx] = oIdx;
 
-  // Cập nhật giao diện lựa chọn
   const parent = document.getElementById(`lesson-q-opts-${qIdx}`);
   if (!parent) return;
   parent.querySelectorAll('.quiz-option-btn').forEach(btn => btn.classList.remove('selected'));
@@ -365,7 +401,6 @@ function submitCurrentLessonMultiQuiz() {
   if (!activeLessonObj || currentLessonQuizSubmitted) return;
   const quizzes = activeLessonObj.quizzes || (activeLessonObj.quiz ? [activeLessonObj.quiz] : []);
 
-  // Kiểm tra xem đã trả lời hết chưa
   const answeredCount = Object.keys(currentLessonQuizUserAnswers).length;
   if (answeredCount < quizzes.length) {
     alert(`Nữ hoàng hãy trả lời đầy đủ ${quizzes.length} câu hỏi trước khi nộp bài nhé! (Hiện đã làm: ${answeredCount}/${quizzes.length})`);
@@ -383,6 +418,7 @@ function submitCurrentLessonMultiQuiz() {
     const chosenBtn = document.getElementById(`l-opt-${qIdx}-${userChoice}`);
     const correctBtn = document.getElementById(`l-opt-${qIdx}-${qItem.correct}`);
     const expBox = document.getElementById(`lesson-q-exp-${qIdx}`);
+    const explanation = qItem.explanation || qItem.exp || "Chính xác!";
 
     if (chosenBtn) {
       chosenBtn.classList.remove('selected');
@@ -399,51 +435,53 @@ function submitCurrentLessonMultiQuiz() {
       if (isCorrect) {
         expBox.style.background = '#dcfce7';
         expBox.style.color = '#15803d';
-        expBox.innerHTML = `<b>✓ Chính xác tuyệt vời!</b> ${qItem.explanation}`;
+        expBox.innerHTML = `<b>✓ Chính xác tuyệt vời!</b> ${explanation}`;
       } else {
         expBox.style.background = '#fee2e2';
         expBox.style.color = '#b91c1c';
-        expBox.innerHTML = `<b>Giải thích chi tiết:</b> ${qItem.explanation}`;
+        expBox.innerHTML = `<b>Giải thích chi tiết:</b> ${explanation}`;
       }
     }
   });
 
-  // Hiển thị kết quả tổng quan
   const summaryBox = document.getElementById('m-lesson-quiz-score-summary');
-  summaryBox.style.display = 'block';
+  if (summaryBox) {
+    summaryBox.style.display = 'block';
+    const earnedXP = correctCount * 10;
+    beeState.xp += earnedXP;
+    saveBeeState();
 
-  const earnedXP = correctCount * 10;
-  beeState.xp += earnedXP;
-  saveBeeState();
-
-  if (correctCount >= Math.ceil(quizzes.length * 0.6)) {
-    SoundSystem.victory();
-    triggerConfetti();
-    summaryBox.style.background = '#dcfce7';
-    summaryBox.style.color = '#15803d';
-    summaryBox.style.border = '1.5px solid #86efac';
-    summaryBox.innerHTML = `
-      <div style="font-size: 1.35rem;">🎉 Chúc mừng Nữ hoàng! Đạt <b>${correctCount} / ${quizzes.length}</b> câu đúng (+${earnedXP} XP)!</div>
-      <div style="font-size: 0.9rem; margin-top: 0.35rem; font-weight: 500;">Nữ hoàng hãy bấm nút <b>"✓ Hoàn Thành Bài & Nhận XP"</b> bên dưới để mở khóa chặng tiếp theo nhé!</div>
-    `;
-  } else {
-    SoundSystem.wrong();
-    summaryBox.style.background = '#fef3c7';
-    summaryBox.style.color = '#92400e';
-    summaryBox.style.border = '1.5px solid #fde68a';
-    summaryBox.innerHTML = `
-      <div style="font-size: 1.25rem;">Nữ hoàng đúng <b>${correctCount} / ${quizzes.length}</b> câu (+${earnedXP} XP).</div>
-      <div style="font-size: 0.9rem; margin-top: 0.35rem; font-weight: 500;">Hãy xem kỹ các phần giải thích chi tiết phía trên để rút kinh nghiệm nhé!</div>
-    `;
+    if (correctCount >= Math.ceil(quizzes.length * 0.6)) {
+      SoundSystem.victory();
+      triggerConfetti();
+      summaryBox.style.background = '#dcfce7';
+      summaryBox.style.color = '#15803d';
+      summaryBox.style.border = '1.5px solid #86efac';
+      summaryBox.innerHTML = `
+        <div style="font-size: 1.35rem;">🎉 Chúc mừng Nữ hoàng! Đạt <b>${correctCount} / ${quizzes.length}</b> câu đúng (+${earnedXP} XP)!</div>
+        <div style="font-size: 0.9rem; margin-top: 0.35rem; font-weight: 500;">Nữ hoàng hãy bấm nút <b>"✓ Hoàn Thành Bài & Nhận XP"</b> bên dưới để mở khóa chặng tiếp theo nhé!</div>
+      `;
+    } else {
+      SoundSystem.wrong();
+      summaryBox.style.background = '#fef3c7';
+      summaryBox.style.color = '#92400e';
+      summaryBox.style.border = '1.5px solid #fde68a';
+      summaryBox.innerHTML = `
+        <div style="font-size: 1.25rem;">Nữ hoàng đúng <b>${correctCount} / ${quizzes.length}</b> câu (+${earnedXP} XP).</div>
+        <div style="font-size: 0.9rem; margin-top: 0.35rem; font-weight: 500;">Hãy xem kỹ các phần giải thích chi tiết phía trên để rút kinh nghiệm nhé!</div>
+      `;
+    }
   }
 
-  // Mở khóa nút hoàn thành bài
   const btnFinish = document.getElementById('btn-finish-lesson-action');
-  btnFinish.disabled = false;
-  btnFinish.style.opacity = '1';
-  btnFinish.style.cursor = 'pointer';
+  if (btnFinish) {
+    btnFinish.disabled = false;
+    btnFinish.style.opacity = '1';
+    btnFinish.style.cursor = 'pointer';
+  }
 
-  document.getElementById('btn-submit-lesson-multi-quiz').style.display = 'none';
+  const btnSubmit = document.getElementById('btn-submit-lesson-multi-quiz');
+  if (btnSubmit) btnSubmit.style.display = 'none';
 }
 
 function finishCurrentIELTSLesson() {
@@ -483,10 +521,18 @@ function renderMusicGame() {
   document.getElementById('current-song-title').textContent = song.title;
   document.getElementById('current-song-artist').textContent = `${song.artist} • ${song.genre}`;
 
-  // Iframe Youtube
+  // Iframe Youtube (Dùng embed chính thức chuẩn YouTube)
   const iframe = document.getElementById('music-yt-frame');
-  const targetSrc = `https://www.youtube-nocookie.com/embed/${song.youtubeId}?rel=0`;
-  if (iframe.src !== targetSrc) iframe.src = targetSrc;
+  if (iframe) {
+    const targetSrc = `https://www.youtube.com/embed/${song.youtubeId}?enablejsapi=1`;
+    if (iframe.src !== targetSrc) iframe.src = targetSrc;
+  }
+
+  // Cập nhật nút mở xem trực tiếp trên tab YouTube
+  const extYtBtn = document.getElementById('btn-open-yt-external');
+  if (extYtBtn) {
+    extYtBtn.href = `https://www.youtube.com/watch?v=${song.youtubeId}`;
+  }
 
   // Trạng thái đã giải của bài này
   if (!beeState.solvedGaps[song.id]) {
@@ -639,6 +685,18 @@ function saveAllCurrentSongVocab() {
   } else {
     alert("Nữ hoàng đã lưu đầy đủ các từ của bài hát này rồi ạ!");
   }
+}
+
+// Đọc mẫu lời bài hát (Chế độ nghe dự phòng khi YouTube bị giới hạn)
+function speakCurrentSongLyrics() {
+  if (typeof MUSIC_GAMES_DATA === 'undefined') return;
+  const song = MUSIC_GAMES_DATA[beeState.currentSongIndex];
+  if (!song) return;
+  SoundSystem.click();
+
+  // Nối các câu lời bài hát thành đoạn văn hoàn chỉnh
+  const fullLyricsText = song.lyricsGaps.map(g => `${g.prefix.replace(/[\n\r]+/g, ' ')} ${g.target} ${g.suffix.replace(/[\n\r]+/g, ' ')}`).join('. ');
+  speakEnglish(`Now reading lyrics for ${song.title} by ${song.artist}. ${fullLyricsText}`);
 }
 
 // ===================================================

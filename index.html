@@ -164,12 +164,27 @@
 
         <!-- Khung trò chơi nhạc -->
         <div class="music-game-container">
-          <!-- Video YouTube -->
+          <!-- Video YouTube & Trình phát nhạc -->
           <div>
             <div class="music-video-box">
-              <iframe id="music-yt-frame" src="" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+              <iframe id="music-yt-frame" src="" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"></iframe>
             </div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+
+            <!-- Các nút hỗ trợ nghe nhạc tiện lợi -->
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.85rem; flex-wrap: wrap;">
+              <a id="btn-open-yt-external" href="https://www.youtube.com/watch?v=WcIcVapfqXw" target="_blank" rel="noopener noreferrer" class="bee-btn-main" style="background: #dc2626; color: #ffffff; text-decoration: none; padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+                <span>▶️</span> Mở nghe trực tiếp trên YouTube (Tab mới)
+              </a>
+              <button class="bee-btn-main" onclick="speakCurrentSongLyrics()" style="background: #0284c7; padding: 0.5rem 1rem; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+                <span>🔊</span> Nghe giọng đọc bài hát
+              </button>
+            </div>
+
+            <div style="font-size: 0.8rem; color: #5d7570; margin-top: 0.65rem; background: #f8faf7; padding: 0.6rem 0.85rem; border-radius: 10px; border: 1px solid var(--bee-border); line-height: 1.45;">
+              💡 <b>Mẹo cho Nữ hoàng:</b> Nếu YouTube bản quyền giới hạn không cho phát trong khung nhỏ, Nữ hoàng hãy bấm nút đỏ <b>"▶️ Mở nghe trực tiếp trên YouTube"</b> để nghe nhạc ở tab bên cạnh, sau đó quay lại đây vừa nghe nhạc vừa chọn từ điền vào chỗ trống nhé!
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; flex-wrap: wrap; gap: 0.5rem;">
               <div>
                 <h3 id="current-song-title" style="font-size: 1.25rem; font-weight: 800; color: var(--bee-forest);">Die With A Smile</h3>
                 <p id="current-song-artist" style="font-size: 0.88rem; color: var(--bee-text-muted);">Bruno Mars & Lady Gaga</p>

@@ -10,7 +10,7 @@ const MUSIC_GAMES_DATA = [
     title: "Die With A Smile",
     artist: "Bruno Mars & Lady Gaga",
     genre: "Soulful Ballad • Romantic Idioms",
-    youtubeId: "kPa7bsKwL-8",
+    youtubeId: "WcIcVapfqXw",
     xpReward: 80,
     cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=60",
     lyricsGaps: [
@@ -574,7 +574,7 @@ const MUSIC_GAMES_DATA = [
     title: "As It Was",
     artist: "Harry Styles",
     genre: "Indie Pop • Nostalgia & Change",
-    youtubeId: "H5v3k2nn9pc",
+    youtubeId: "P3cffdsEXXw",
     xpReward: 80,
     cover: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&auto=format&fit=crop&q=60",
     lyricsGaps: [
@@ -856,7 +856,7 @@ const MUSIC_GAMES_DATA = [
     title: "Stay",
     artist: "The Kid LAROI & Justin Bieber",
     genre: "Pop-Punk • Fast-paced Relationship Dilemma",
-    youtubeId: "kTJczUoc568",
+    youtubeId: "b73BI9eUkjM",
     xpReward: 80,
     cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=800&auto=format&fit=crop&q=60",
     lyricsGaps: [
