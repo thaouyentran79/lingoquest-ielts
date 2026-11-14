@@ -1,19 +1,17 @@
 /**
- * DATA NỘI DUNG LỘ TRÌNH IELTS & TẠP CHÍ BẮT TREND
- * Thiết kế chuẩn EdTech: Trọng tâm là Lộ trình IELTS chuẩn Band điểm
- * Tách riêng phần Tạp chí Đọc báo (Âm nhạc, Thời trang, Công nghệ)
+ * IELTS BEE 🐝 - DỮ LIỆU BÀI HỌC, ÂM NHẠC & TIN TỨC
+ * Thương hiệu chính thức: IELTS Bee (Học tiếng Anh chất như mật)
  */
 
 // ===================================================
-// 1. LỘ TRÌNH LUYỆN THI IELTS CHÍNH (THEO CÁC BAND ĐIỂM)
-// Lấy cảm hứng từ Forum Flash Study nhưng tối ưu cực kỳ dễ xài!
+// 1. LỘ TRÌNH LUYỆN THI IELTS CHÍNH (THEO BAND ĐIỂM)
 // ===================================================
 const IELTS_ROADMAP = [
   {
     bandId: "band-5-6",
     bandTitle: "Chặng 1: Nền Tảng & Phản Xạ (Target 5.5 - 6.0)",
     bandDesc: "Xây gốc từ vựng học thuật cốt lõi và làm chủ phản xạ nói tự nhiên",
-    badgeColor: "#38bdf8",
+    badgeColor: "#d97706",
     lessons: [
       {
         id: "ielts-1",
@@ -22,7 +20,6 @@ const IELTS_ROADMAP = [
         skillIcon: "✍️",
         duration: "10 phút",
         xp: 40,
-        status: "completed", // Chặng đầu mở sẵn
         summary: "Bí quyết nói 1 ý bằng 3 cách khác nhau để nâng band điểm IELTS ngay lập tức.",
         content: `
           <h3>🎯 Tại sao Paraphrasing là chìa khóa vàng của IELTS?</h3>
@@ -66,7 +63,6 @@ const IELTS_ROADMAP = [
         skillIcon: "🗣️",
         duration: "12 phút",
         xp: 50,
-        status: "unlocked",
         summary: "Không bao giờ bí ý hay trả lời cộc lốc nhờ công thức Answer - Reason - Example - Alternative.",
         content: `
           <h3>🎯 Thoát cảnh trả lời 'Yes/No' ngắn củn</h3>
@@ -101,7 +97,6 @@ const IELTS_ROADMAP = [
         skillIcon: "📖",
         duration: "15 phút",
         xp: 50,
-        status: "locked",
         summary: "Đọc 3 đoạn văn dài 3000 từ trong 60 phút mà không cần dịch từng câu chữ.",
         content: `
           <h3>🎯 Chiến thuật sống còn cho IELTS Reading</h3>
@@ -132,7 +127,7 @@ const IELTS_ROADMAP = [
     bandId: "band-6-7",
     bandTitle: "Chặng 2: Nâng Tầm Lập Luận (Target 6.5 - 7.5)",
     bandDesc: "Phát triển tư duy phản biện Task 2 và biến hóa từ vựng Academic C1",
-    badgeColor: "#a855f7",
+    badgeColor: "#b45309",
     lessons: [
       {
         id: "ielts-4",
@@ -141,8 +136,7 @@ const IELTS_ROADMAP = [
         skillIcon: "✍️",
         duration: "15 phút",
         xp: 60,
-        status: "locked",
-        summary: "Viết thân bài luận điểm sắc bén, mạch lạc lạc chuẩn tiêu chí Coherence & Cohesion.",
+        summary: "Viết thân bài luận điểm sắc bén, mạch lạc chuẩn tiêu chí Coherence & Cohesion.",
         content: `
           <h3>🎯 Viết thân bài Task 2 chuẩn khung giám khảo quốc tế</h3>
           <div class="theory-box">
@@ -150,7 +144,7 @@ const IELTS_ROADMAP = [
             <ul>
               <li><b>P (Point - Luận điểm):</b> Nêu câu chủ đề rõ ràng: <i>'First and foremost, remote working substantially cuts commuting overheads.'</i></li>
               <li><b>E (Explanation - Giải thích sâu):</b> Giải thích vì sao: <i>'Employees no longer squander hours stuck in metropolitan traffic gridlocks.'</i></li>
-              <li><b>E (Example - Bằng chứng thực tế):</b> Đưa dẫn chứng: <i>'For instance, recent labor surveys in Vietnam reveal that remote staff save up to 10 hours weekly.'</i></li>
+              <li><b>E (Example - Bằng chứng thực tế):</b> Đưa dẫn chứng: <i>'For instance, recent labor surveys reveal that remote staff save up to 10 hours weekly.'</i></li>
               <li><b>L (Link - Chốt liên kết):</b> Khẳng định lại ý: <i>'Consequently, this paradigm enhances overall job satisfaction and well-being.'</i></li>
             </ul>
           </div>
@@ -174,11 +168,10 @@ const IELTS_ROADMAP = [
         skillIcon: "🗣️",
         duration: "12 phút",
         xp: 60,
-        status: "locked",
         summary: "Sử dụng thành ngữ tự nhiên đúng ngữ cảnh để chạm ngưỡng Lexical Resource Band 7.5+.",
         content: `
           <h3>🎯 Cách dùng Idioms không bị 'gượng gạo'</h3>
-          <p>Giám khảo ghét nhất là thí sinh nhét bừa các thành ngữ sáo rỗng như 'rain cats and dogs'. Hãy dùng những idioms hiện đại, tinh tế sau:</p>
+          <p>Hãy dùng những idioms hiện đại, tinh tế sau:</p>
           <div class="theory-box">
             <ul>
               <li><b>Over the moon:</b> Cực kỳ hạnh phúc. (<i>'When I received the scholarship, I was over the moon.'</i>)</li>
@@ -207,16 +200,15 @@ const IELTS_ROADMAP = [
     bandId: "band-7-8",
     bandTitle: "Chặng 3: Bứt Phá Đỉnh Cao (Target 7.5 - 8.5)",
     bandDesc: "Thành thạo cấu trúc câu cao cấp (Inversion, Cleft sentences) và từ vựng C2",
-    badgeColor: "#ec4899",
+    badgeColor: "#059669",
     lessons: [
       {
         id: "ielts-6",
-        title: "Ngữ Pháp Đảo Ngữ (Inversion) & Cleft Sentences Gây Ấn Tượng",
+        title: "Ngữ Pháp Đảo Ngữ (Inversion) Gây Ấn Tượng Tuyệt Đối",
         skill: "Writing & Grammar",
         skillIcon: "⚡",
         duration: "15 phút",
         xp: 80,
-        status: "locked",
         summary: "Biến câu văn bình thường thành tuyệt phẩm ngữ pháp đạt điểm Grammatical Range tối đa.",
         content: `
           <h3>🎯 Vũ khí bí mật cho Band 8.0 Writing</h3>
@@ -243,188 +235,236 @@ const IELTS_ROADMAP = [
   }
 ];
 
-
 // ===================================================
-// 2. TẠP CHÍ ĐỌC BÁO & GIẢI TRÍ (MAGAZINE ARTICLES)
-// Trình bày như trang báo chí/tạp chí hiện đại
-// 3 Chuyên mục: Âm nhạc US-UK, Thời trang, Công nghệ
+// 2. GAME "NGHE NHẠC ĐIỀN TỪ" (MUSIC GAP-FILL)
+// Nhúng trực tiếp video YouTube + Lời bài hát đục lỗ ăn điểm XP
 // ===================================================
-const MAGAZINE_ARTICLES = [
-  // --- CHUYÊN MỤC ÂM NHẠC ---
+const MUSIC_GAMES_DATA = [
   {
-    id: "mag-music-1",
-    category: "music",
-    categoryName: "Âm Nhạc US-UK",
-    categoryIcon: "🎵",
-    title: "Die With A Smile - Bản Tình Ca Đạt Hàng Tỷ Lượt Nghe Của Bruno Mars & Lady Gaga",
-    subtitle: "Học cách diễn tả cảm xúc thăng hoa và idioms cho bài thi IELTS Speaking",
-    author: "Billboard Music Review",
-    readTime: "3 phút đọc",
-    coverImg: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=60",
+    id: "song-1",
+    title: "Die With A Smile",
+    artist: "Bruno Mars & Lady Gaga",
+    genre: "Pop Ballad • IELTS Speaking",
     youtubeId: "kPa7bsKwL-8",
-    summary: "Ca khúc thống trị các bảng xếp hạng toàn cầu nhờ giai điệu hoài niệm và ca từ đầy cảm xúc. Cùng mổ xẻ các từ vựng và thành ngữ đắt giá trong bài hát nhé!",
-    contentHtml: `
-      <p>Sự kết hợp bất ngờ giữa <b>Bruno Mars</b> và <b>Lady Gaga</b> trong ca khúc <i>"Die With A Smile"</i> đã tạo nên cơn địa chấn trong làng nhạc quốc tế. Bài hát mang âm hưởng pop-ballad sâu lắng của thập niên 70, thể hiện tình yêu mãnh liệt và sự trân trọng từng khoảnh khắc bên người thương.</p>
-      
-      <blockquote>
-        "If the world was ending, I'd wanna be next to you.<br>
-        If the party was over and our time on Earth was through,<br>
-        I'd wanna hold you just for a while and <span class="mag-highlight" onclick="speakEnglish('die with a smile')">die with a smile</span>."
-      </blockquote>
-
-      <h4>💎 Giải Mã Từ Lóng & Idioms Ăn Điểm:</h4>
-      <ul>
-        <li><b>Die with a smile:</b> Mãn nguyện, không còn gì phải ân hận hay hối tiếc. Trong IELTS Speaking, bạn có thể nói: <i>'If I achieved my dream of studying abroad, I could die with a smile.'</i></li>
-        <li><b>In the blink of an eye:</b> Trong nháy mắt, cực kỳ nhanh chóng. Thay thế hoàn hảo cho từ đơn giản <i>'very fast'</i>.</li>
-        <li><b>Bittersweet:</b> Buồn vui lẫn lộn, ngọt ngào xen lẫn tiếc nuối (từ vựng Band 7.5).</li>
-      </ul>
-    `,
-    vocabList: [
-      { word: "Bittersweet", ipa: "/ˌbɪtəˈswiːt/", meaning: "Vừa vui vừa tiếc nuối", example: "Graduating was a bittersweet milestone." },
-      { word: "Serenade", ipa: "/ˌser.əˈneɪd/", meaning: "Hát bản tình ca tán tỉnh", example: "He serenaded her under the moonlight." },
-      { word: "Unconditional", ipa: "/ˌʌn.kənˈdɪʃ.ən.əl/", meaning: "Vô điều kiện", example: "Maternal love is unconditional." }
+    xpReward: 60,
+    cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=60",
+    lyricsGaps: [
+      {
+        prefix: "I just woke up from a dream where you and I had to say ",
+        target: "goodbye",
+        suffix: ".",
+        hint: "Từ 7 chữ cái: Lời tạm biệt",
+        options: ["goodbye", "hello", "forever", "nothing"]
+      },
+      {
+        prefix: "If the world was ending, I'd wanna be ",
+        target: "next to you",
+        suffix: ".",
+        hint: "Cụm 3 từ: Bên cạnh bạn",
+        options: ["far away", "next to you", "out of town", "on the moon"]
+      },
+      {
+        prefix: "I'd wanna hold you just for a while and ",
+        target: "die with a smile",
+        suffix: ".",
+        hint: "Thành ngữ: Mãn nguyện không hối tiếc",
+        options: ["cry all night", "die with a smile", "dance in rain", "stay forever"]
+      },
+      {
+        prefix: "Our precious moments pass in the ",
+        target: "blink of an eye",
+        suffix: ".",
+        hint: "Idiom: Trong nháy mắt, cực nhanh",
+        options: ["middle of day", "blink of an eye", "heat of moment", "drop of hat"]
+      }
+    ],
+    vocabToSave: [
+      { word: "Die with a smile", ipa: "/daɪ wɪð ə smaɪl/", vi: "Mãn nguyện, không còn gì hối tiếc", example: "If I achieve my lifelong goals, I could die with a smile." },
+      { word: "In the blink of an eye", ipa: "/ɪn ðə blɪŋk əv ən aɪ/", vi: "Trong chớp mắt, rất nhanh chóng", example: "Modern trends change in the blink of an eye." },
+      { word: "Bittersweet", ipa: "/ˌbɪtəˈswiːt/", vi: "Buồn vui lẫn lộn, ngọt ngào xen tiếc nuối", example: "Graduation was a bittersweet occasion." },
+      { word: "Unconditional", ipa: "/ˌʌn.kənˈdɪʃ.ən.əl/", vi: "Vô điều kiện", example: "A mother offers unconditional love." }
     ]
   },
   {
-    id: "mag-music-2",
-    category: "music",
-    categoryName: "Âm Nhạc US-UK",
-    categoryIcon: "🎵",
-    title: "Espresso - Sabrina Carpenter: Cơn Sốt Cà Phê Disco-Pop Khiến Giới Trẻ Mê Mẩn",
-    subtitle: "Học cách nói tự tin, dí dỏm chuẩn phong cách bản xứ Gen Z",
-    author: "Rolling Stone Magazine",
-    readTime: "3 phút đọc",
-    coverImg: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&auto=format&fit=crop&q=60",
+    id: "song-2",
+    title: "Espresso",
+    artist: "Sabrina Carpenter",
+    genre: "Disco-Pop • Casual English & Slang",
     youtubeId: "eVli-tstM5E",
-    summary: "Điệu nhảy vui nhộn và giai điệu bắt tai của Espresso đã càn quét TikTok. Cùng học các cụm từ lóng cực tự nhiên cho IELTS Speaking Part 1.",
-    contentHtml: `
-      <p>Với điệp khúc dí dỏm <i>"That's that me, espresso"</i>, Sabrina Carpenter đã ví sự quyến rũ khó cưỡng của mình giống như một tách espresso đậm đặc khiến đối phương trằn trọc không thể ngủ.</p>
-      
-      <h4>💎 Từ Vựng & Cụm Từ Thời Thượng:</h4>
-      <ul>
-        <li><b>Nonchalant:</b> Thờ ơ, thản nhiên, tỏ vẻ ngầu không bận tâm thế sự (Từ vựng Band 8.0 cực xịn).</li>
-        <li><b>Switch it up:</b> Đổi mới phong cách, làm điều gì đó khác lạ thường ngày.</li>
-        <li><b>Intoxicating:</b> Làm say mê, gây cuốn hút mãnh liệt.</li>
-      </ul>
-    `,
-    vocabList: [
-      { word: "Nonchalant", ipa: "/ˌnɒn.ʃəl.ənt/", meaning: "Thản nhiên, điềm tĩnh cực ngầu", example: "She gave a delightfully nonchalant reply." },
-      { word: "Intoxicating", ipa: "/ɪnˈtɒk.sɪ.keɪ.tɪŋ/", meaning: "Gây say đắm, mê hoặc", example: "The perfume has an intoxicating aroma." },
-      { word: "Switch it up", ipa: "/swɪtʃ ɪt ʌp/", meaning: "Thay đổi phong cách cho mới mẻ", example: "Let's switch it up tonight." }
-    ]
-  },
-
-  // --- CHUYÊN MỤC THỜI TRANG ---
-  {
-    id: "mag-fashion-1",
-    category: "fashion",
-    categoryName: "Thời Trang & Lifestyle",
-    categoryIcon: "👗",
-    title: "Quiet Luxury & Phong Cách Old Money: Khi Sự Tinh Tế Lên Ngôi",
-    subtitle: "Giải mã xu hướng ăn mặc tối giản, sang trọng không phô trương",
-    author: "Vogue International",
-    readTime: "4 phút đọc",
-    coverImg: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=60",
-    summary: "Thay vì khoe mẽ logo hàng hiệu cỡ lớn, giới thượng lưu ngày nay chuộng trang phục may đo tinh xảo với gam màu trung tính nhã nhặn.",
-    contentHtml: `
-      <p>Khác biệt hoàn toàn với trào lưu khoe mẽ logo thương hiệu (logomania), làn sóng <b>Quiet Luxury</b> (Sang trọng thầm lặng) hay còn gọi là <i>Old Money Aesthetic</i> đang thống trị các sàn diễn thời trang thế giới.</p>
-      
-      <p>Người sành điệu không cần quần áo gắn mác to tướng. Họ tìm kiếm những bộ trang phục <span class="mag-highlight" onclick="speakEnglish('bespoke tailoring')">bespoke tailoring</span> (may đo riêng), chất liệu len cashmere thượng hạng và đường may hoàn mỹ. Đó chính là vẻ đẹp của <span class="mag-highlight" onclick="speakEnglish('understated elegance')">understated elegance</span> (sự thanh lịch kín đáo).</p>
-
-      <h4>💎 Từ Vựng Học Thuật Nâng Band Cực Đẹp:</h4>
-      <ul>
-        <li><b>Understated:</b> Kín đáo, không phô trương, tinh tế.</li>
-        <li><b>Bespoke:</b> Đặt may đo riêng theo số đo chuẩn xác.</li>
-        <li><b>Ostentatious:</b> Khoe khoang, phô trương kệch cỡm (từ trái nghĩa hoàn hảo).</li>
-        <li><b>Connoisseur:</b> Chuyên gia sành sỏi, người có gu thẩm mỹ cao.</li>
-      </ul>
-    `,
-    vocabList: [
-      { word: "Understated", ipa: "/ˌʌn.dəˈsteɪ.tɪd/", meaning: "Kín đáo, tinh tế, không khoe của", example: "Her understated dress won high praise." },
-      { word: "Bespoke", ipa: "/bɪˈspəʊk/", meaning: "May đo riêng theo yêu cầu", example: "He wore a bespoke Italian suit." },
-      { word: "Ostentatious", ipa: "/ˌɒs.tenˈteɪ.ʃəs/", meaning: "Khoe khoang phô trương lộ liễu", example: "She avoids ostentatious jewelry." }
+    xpReward: 60,
+    cover: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&auto=format&fit=crop&q=60",
+    lyricsGaps: [
+      {
+        prefix: "Say you can't sleep, baby, I know, that's that me, ",
+        target: "espresso",
+        suffix: ".",
+        hint: "Tên một loại cà phê đậm đặc",
+        options: ["latte", "espresso", "cappuccino", "macchiato"]
+      },
+      {
+        prefix: "Move it up, down, left, right, ",
+        target: "switch it up",
+        suffix: " like Nintendo.",
+        hint: "Cụm động từ: Thay đổi phong cách mới mẻ",
+        options: ["turn it off", "switch it up", "give it away", "break it down"]
+      },
+      {
+        prefix: "She entered the lounge looking effortlessly ",
+        target: "nonchalant",
+        suffix: ".",
+        hint: "Tính từ Band 8.0: Thản nhiên, cực ngầu",
+        options: ["nervous", "nonchalant", "confused", "panicked"]
+      }
+    ],
+    vocabToSave: [
+      { word: "Nonchalant", ipa: "/ˌnɒn.ʃəl.ənt/", vi: "Thản nhiên, điềm tĩnh cực ngầu", example: "She gave a delightfully nonchalant reply." },
+      { word: "Switch it up", ipa: "/swɪtʃ ɪt ʌp/", vi: "Đổi mới phong cách cho thú vị", example: "Let's switch it up and dine somewhere fancy." },
+      { word: "Intoxicating", ipa: "/ɪnˈtɒk.sɪ.keɪ.tɪŋ/", vi: "Gây say đắm, mê hoặc lòng người", example: "Her voice has an intoxicating quality." }
     ]
   },
   {
-    id: "mag-fashion-2",
-    category: "fashion",
-    categoryName: "Thời Trang & Lifestyle",
-    categoryIcon: "👗",
-    title: "Thời Trang Tuần Hoàn: Cách Thế Hệ Trẻ Giải Cứu Trái Đất Qua Tủ Quần Áo",
-    subtitle: "Chủ đề môi trường & tiêu dùng xuất hiện liên tục trong đề thi IELTS",
-    author: "Elle Green Edition",
-    readTime: "3 phút đọc",
-    coverImg: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&auto=format&fit=crop&q=60",
-    summary: "Ngành thời trang nhanh (Fast fashion) đang xả thải khổng lồ. Phong trào Upcycling và kinh tế tuần hoàn đang trở thành phong cách sống mới.",
-    contentHtml: `
-      <p>Thời trang nhanh giá rẻ đang để lại một <span class="mag-highlight" onclick="speakEnglish('carbon footprint')">carbon footprint</span> (dấu chân carbon) khổng lồ cho bầu khí quyển. Hàng triệu tấn quần áo khó phân hủy bị chôn vùi tại các bãi rác mỗi năm.</p>
-      
-      <p>Để cứu vãn tình thế, thế hệ trẻ đang thúc đẩy nền kinh tế tuần hoàn qua trào lưu <span class="mag-highlight" onclick="speakEnglish('upcycling')">upcycling</span> (tái chế nâng cấp đồ cũ thành món đồ giá trị cao hơn) và tiêu dùng có đạo đức (ethical consumerism).</p>
-    `,
-    vocabList: [
-      { word: "Biodegradable", ipa: "/ˌbaɪ.əʊ.dɪˈɡreɪ.də.bəl/", meaning: "Phân hủy sinh học tự nhiên", example: "Biodegradable fabrics reduce landfill waste." },
-      { word: "Upcycling", ipa: "/ˈʌpˌsaɪ.klɪŋ/", meaning: "Tái chế nâng cấp giá trị cao hơn", example: "Upcycling denim jackets is trendy." },
-      { word: "Mitigate", ipa: "/ˈmɪt.ɪ.ɡeɪt/", meaning: "Làm dịu bớt, giảm nhẹ tác hại", example: "Renewable energy mitigates pollution." }
-    ]
-  },
-
-  // --- CHUYÊN MỤC CÔNG NGHỆ ---
-  {
-    id: "mag-tech-1",
-    category: "tech",
-    categoryName: "Công Nghệ & AI",
-    categoryIcon: "🚀",
-    title: "Từ Chatbot Đến Trợ Lý Tự Hành (AI Agents): Kỷ Nguyên Làm Việc Mới",
-    subtitle: "Cách AI thay đổi năng suất lao động và vốn từ học thuật cho Task 2",
-    author: "Tech Horizons Review",
-    readTime: "4 phút đọc",
-    coverImg: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=60",
-    summary: "Không chỉ dừng lại ở việc gõ chữ trò chuyện, các AI Agent ngày nay có thể tự lập kế hoạch, tự chạy lệnh và tự động hóa toàn bộ quy trình công việc phức tạp.",
-    contentHtml: `
-      <p>Thế giới công nghệ đang chứng kiến một bước ngoặt mang tính cách mạng: <span class="mag-highlight" onclick="speakEnglish('paradigm shift')">paradigm shift</span> từ các chatbot bị động sang các Trợ lý AI tự hành (<span class="mag-highlight" onclick="speakEnglish('autonomous agents')">autonomous agents</span>).</p>
-      
-      <p>Khác với việc người dùng phải nhắc từng lệnh, Agent sở hữu bộ nhớ, công cụ và khả năng lập luận đa bước. Chúng giải phóng con người khỏi những gánh nặng nhận thức (<span class="mag-highlight" onclick="speakEnglish('cognitive burden')">cognitive burden</span>) và các công việc hành chính thủ công lặp đi lặp lại.</p>
-    `,
-    vocabList: [
-      { word: "Paradigm shift", ipa: "/ˈpær.ə.daɪm ʃɪft/", meaning: "Bước ngoặt tư duy mang tính cách mạng", example: "AI sparked a paradigm shift in education." },
-      { word: "Autonomous", ipa: "/ɔːˈtɒn.ə.məs/", meaning: "Tự hành, hoạt động độc lập", example: "Autonomous drones monitor traffic conditions." },
-      { word: "Alleviate", ipa: "/əˈliː.vi.eɪt/", meaning: "Xoa dịu, giảm tải áp lực gánh nặng", example: "Smart tools alleviate operational stress." }
-    ]
-  },
-  {
-    id: "mag-tech-2",
-    category: "tech",
-    categoryName: "Công Nghệ & AI",
-    categoryIcon: "🚀",
-    title: "Giao Thông Thông Minh (ITS): Lời Giải Cho Ùn Tắc Đô Thị Đông Nam Á",
-    subtitle: "Chủ đề Smart City kinh điển trong đề thi IELTS Reading & Writing",
-    author: "Urban Infrastructure Journal",
-    readTime: "3.5 phút đọc",
-    coverImg: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800&auto=format&fit=crop&q=60",
-    summary: "Thu phí không dừng (ETC), đèn tín hiệu điều khiển bằng AI và cảm biến đo lường từ xa đang giải cứu các thành phố lớn khỏi kẹt xe giờ cao điểm.",
-    contentHtml: `
-      <p>Sự gia tăng phương tiện nhanh chóng tại các vùng đô thị lớn (<span class="mag-highlight" onclick="speakEnglish('metropolitan areas')">metropolitan areas</span>) đòi hỏi các giải pháp công nghệ hiện đại.</p>
-      
-      <p>Hệ thống Giao thông thông minh (ITS) kết hợp dữ liệu cảm biến từ xa (<span class="mag-highlight" onclick="speakEnglish('telemetry')">telemetry</span>) với thuật toán học máy giúp cơ quan quản lý điều tiết dòng xe theo thời gian thực và <span class="mag-highlight" onclick="speakEnglish('mitigate congestion')">mitigate congestion</span> (giảm thiểu ùn tắc) trên các tuyến đường huyết mạch.</p>
-    `,
-    vocabList: [
-      { word: "Congestion", ipa: "/kənˈdʒes.tʃən/", meaning: "Tình trạng ùn tắc giao thông", example: "Traffic congestion costs billions annually." },
-      { word: "Metropolitan", ipa: "/ˌmet.rəˈpɒl.ɪ.tən/", meaning: "Thuộc vùng đô thị lớn", example: "Metropolitan living requires efficient mass transit." },
-      { word: "Telemetry", ipa: "/təˈlem.ə.tri/", meaning: "Hệ thống đo đạc truyền dữ liệu từ xa", example: "Sensors transmit real-time telemetry." }
+    id: "song-3",
+    title: "Anti-Hero",
+    artist: "Taylor Swift",
+    genre: "Synth-Pop • Psychological Vocab",
+    youtubeId: "b1kbLwvqugk",
+    xpReward: 60,
+    cover: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&auto=format&fit=crop&q=60",
+    lyricsGaps: [
+      {
+        prefix: "It's me, hi, I'm the ",
+        target: "problem",
+        suffix: ", it's me.",
+        hint: "Từ 7 chữ: Vấn đề, rắc rối",
+        options: ["solution", "problem", "master", "shadow"]
+      },
+      {
+        prefix: "At tea time, everybody ",
+        target: "agrees",
+        suffix: ".",
+        hint: "Động từ: Đồng thuận, tán thành",
+        options: ["disagrees", "agrees", "leaves", "whispers"]
+      },
+      {
+        prefix: "Sometimes I feel like everybody is a sexy baby, and I'm a monster on the ",
+        target: "hill",
+        suffix: ".",
+        hint: "Từ 4 chữ cái: Ngọn đồi",
+        options: ["sea", "hill", "mountain", "cloud"]
+      }
+    ],
+    vocabToSave: [
+      { word: "Anti-hero", ipa: "/ˌæn.tiˈhɪə.rəʊ/", vi: "Nhân vật phản anh hùng (nhiều khuyết điểm)", example: "Modern cinema loves complex anti-heroes." },
+      { word: "Altruism", ipa: "/ˈæl.tru.ɪ.zəm/", vi: "Lòng vị tha, hy sinh vì người khác", example: "True altruism expects no recognition." },
+      { word: "Covert", ipa: "/ˈkəʊ.vɜːt/", vi: "Bí mật, che giấu không công khai", example: "The survey uncovered covert bias in hiring." }
     ]
   }
 ];
 
 // ===================================================
-// 3. TOÀN BỘ TỪ VỰNG CHO ĐẤU TRƯỜNG MINI-GAMES
+// 3. TỰ ĐỘNG CẬP NHẬT TIN TỨC RSS (100% MIỄN PHÍ)
+// Nguồn RSS: TechCrunch (Công nghệ TG), VnExpress Số Hóa (Công nghệ VN), Fashionista (Thời trang)
 // ===================================================
-const ALL_VOCABULARY_POOL = [
-  { word: "Crucial", ipa: "/ˈkruː.ʃəl/", vi: "Cực kỳ quan trọng, sống còn", example: "Early preparation is crucial for IELTS." },
-  { word: "Beneficial", ipa: "/ˌben.ɪˈfɪʃ.əl/", vi: "Có lợi, mang lại hiệu quả tốt", example: "Reading daily is immensely beneficial." },
-  { word: "Tackle", ipa: "/ˈtæk.əl/", vi: "Giải quyết, xử lý vấn đề", example: "The government took steps to tackle inflation." },
-  { word: "Substantial", ipa: "/səbˈstæn.ʃəl/", vi: "Đáng kể, to lớn", example: "We noticed a substantial improvement." },
-  { word: "Understated", ipa: "/ˌʌn.dəˈsteɪ.tɪd/", vi: "Kín đáo, thanh lịch tinh tế", example: "Quiet luxury celebrates understated chic." },
-  { word: "Nonchalant", ipa: "/ˌnɒn.ʃəl.ənt/", vi: "Thản nhiên, điềm tĩnh cực ngầu", example: "He gave a wonderfully nonchalant smirk." },
-  { word: "Autonomous", ipa: "/ɔːˈtɒn.ə.məs/", vi: "Tự hành, hoạt động độc lập", example: "Autonomous agents handle complex pipelines." },
-  { word: "Congestion", ipa: "/kənˈdʒes.tʃən/", vi: "Sự ùn tắc giao thông", example: "Smart signals mitigate traffic congestion." }
+const RSS_SOURCES = [
+  {
+    category: "fashion",
+    name: "Thời Trang Quốc Tế",
+    icon: "👗",
+    feedUrl: "https://fashionista.com/.rss/full/"
+  },
+  {
+    category: "tech-world",
+    name: "Công Nghệ Thế Giới",
+    icon: "🌐",
+    feedUrl: "https://techcrunch.com/feed/"
+  },
+  {
+    category: "tech-vn",
+    name: "Công Nghệ Việt Nam",
+    icon: "🇻🇳",
+    feedUrl: "https://vnexpress.net/rss/so-hoa.rss"
+  }
 ];
+
+// Dữ liệu tin tức dự phòng sẵn sàng nạp ngay (Zero-latency fallback)
+const DEFAULT_NEWS_ARTICLES = [
+  {
+    id: "news-fashion-1",
+    category: "fashion",
+    categoryName: "Thời Trang Quốc Tế",
+    categoryIcon: "👗",
+    title: "Quiet Luxury & Old Money: Khi Sự Tinh Tế Lên Ngôi",
+    author: "Vogue Style Monitor",
+    published: "Hôm nay",
+    coverImg: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=60",
+    summary: "Thay vì phô trương logo thương hiệu hào nhoáng, giới mộ điệu toàn cầu chuyển hướng sang bespoke tailoring và sự sang trọng kín đáo.",
+    content: `The global fashion landscape has embraced a profound paradigm shift towards quiet luxury—often termed the Old Money aesthetic. Rather than parading ostentatious brand logos, discerning connoisseurs invest in bespoke tailoring, neutral palettes, and sumptuous cashmere garments.
+
+This movement celebrates understated elegance, proving that true sophistication whispers rather than screams. Garments are crafted with immaculate attention to detail, boasting timeless silhouettes that transcend fleeting micro-trends.
+
+Furthermore, environmental sociologists emphasize that sustainable craftsmanship is becoming an indispensable cornerstone of ethical consumerism in modern society.`
+  },
+  {
+    id: "news-tech-world-1",
+    category: "tech-world",
+    categoryName: "Công Nghệ Thế Giới",
+    categoryIcon: "🌐",
+    title: "Kỷ Nguyên AI Tự Hành (Autonomous Agents): Cách Mạng Năng Suất 2026",
+    author: "Tech Horizons Global",
+    published: "Vừa cập nhật",
+    coverImg: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=60",
+    summary: "Từ chatbot hỏi-đáp bị động sang các Trợ lý AI tự hành có khả năng phân tích chuỗi quy trình và tự động thực thi công việc đa nhiệm.",
+    content: `Artificial intelligence has progressed past the era of simplistic text chat. Today, industry pioneers deploy autonomous AI agents capable of multistep reasoning, persistent memory, and automated API execution.
+
+These autonomous entities decompose complex business directives into sequential workflows without requiring manual micro-management. By automating repetitive clerical operations, agents alleviate substantial cognitive burden for corporate professionals.
+
+However, computer scientists emphasize that robust verification layers remain crucial to mitigate hallucination risks and ensure data privacy.`
+  },
+  {
+    id: "news-tech-vn-1",
+    category: "tech-vn",
+    categoryName: "Công Nghệ Việt Nam",
+    categoryIcon: "🇻🇳",
+    title: "Giao Thông Thông Minh (ITS) & Chuyển Đổi Số Đô Thị Tại Việt Nam",
+    author: "Vietnam Digital Gazette",
+    published: "Hôm nay",
+    coverImg: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?w=800&auto=format&fit=crop&q=60",
+    summary: "Hệ thống ETC không dừng, camera AI nhận diện biển số và cảm biến đo đếm telemetry đang giải quyết bài toán ùn tắc đô thị tại TP.HCM và Hà Nội.",
+    content: `Rapid metropolitan expansion in Ho Chi Minh City and Hanoi has exerted severe pressure on arterial transport corridors. In response, municipal authorities and leading Vietnamese tech corporations are orchestrating comprehensive Intelligent Transportation Systems (ITS).
+
+By synergizing real-time telemetry, automated ETC toll collection, and AI-assisted traffic signaling, cities can actively mitigate congestion during peak commute hours. Commuters benefit from reduced travel latency and lower carbon emissions.
+
+Experts note that continuous transit infrastructure modernization will remain a primary catalyst for Vietnam's economic trajectory in the upcoming decade.`
+  }
+];
+
+// ===================================================
+// 4. TỪ ĐIỂN TỰ ĐỘNG BÔI ĐẬM TỪ B2-C1 (ACADEMIC HIGHLIGHTER)
+// Tự động nhận diện từ vựng học thuật trong bài báo để highlight
+// ===================================================
+const ACADEMIC_VOCAB_DB = {
+  "paradigm shift": { ipa: "/ˈpær.ə.daɪm ʃɪft/", vi: "Bước ngoặt tư duy mang tính cách mạng" },
+  "quiet luxury": { ipa: "/ˈkwaɪ.ət ˈlʌk.ʃər.i/", vi: "Sự sang trọng thầm lặng, không phô trương" },
+  "ostentatious": { ipa: "/ˌɒs.tenˈteɪ.ʃəs/", vi: "Khoe khoang, phô trương kệch cỡm" },
+  "connoisseurs": { ipa: "/ˌkɒn.əˈsɜːrz/", vi: "Các chuyên gia có gu thẩm mỹ sành sỏi" },
+  "bespoke tailoring": { ipa: "/bɪˈspəʊk ˈteɪ.lər.ɪŋ/", vi: "Trang phục may đo riêng theo số đo" },
+  "understated elegance": { ipa: "/ˌʌn.dəˈsteɪ.tɪd ˈel.ɪ.ɡəns/", vi: "Vẻ thanh lịch kín đáo, tinh tế" },
+  "silhouettes": { ipa: "/ˌsɪl.uˈets/", vi: "Kiểu dáng, phom dáng trang phục" },
+  "sustainable": { ipa: "/səˈsteɪ.nə.bəl/", vi: "Bền vững, thân thiện môi trường" },
+  "indispensable": { ipa: "/ˌɪn.dɪˈspen.sə.bəl/", vi: "Tối quan trọng, không thể thiếu" },
+  "cornerstone": { ipa: "/ˈkɔː.nə.stəʊn/", vi: "Hòn đá tảng nền móng thiết yếu" },
+  "autonomous": { ipa: "/ɔːˈtɒn.ə.məs/", vi: "Tự hành, hoạt động độc lập" },
+  "alleviate": { ipa: "/əˈliː.vi.eɪt/", vi: "Làm vơi đi, giảm bớt áp lực gánh nặng" },
+  "cognitive burden": { ipa: "/ˈkɒɡ.nə.tɪv ˈbɜː.dən/", vi: "Gánh nặng nhận thức của não bộ" },
+  "mitigate": { ipa: "/ˈmɪt.ɪ.ɡeɪt/", vi: "Giảm nhẹ tác hại, làm dịu vấn đề" },
+  "hallucination": { ipa: "/həˌluː.sɪˈneɪ.ʃən/", vi: "Thông tin bịa đặt của mô hình AI" },
+  "metropolitan": { ipa: "/ˌmet.rəˈpɒl.ɪ.tən/", vi: "Thuộc vùng đô thị lớn" },
+  "arterial": { ipa: "/ɑːˈtɪə.ri.əl/", vi: "Tuyến đường huyết mạch trọng điểm" },
+  "telemetry": { ipa: "/təˈlem.ə.tri/", vi: "Đo đạc và truyền dữ liệu tự động từ xa" },
+  "congestion": { ipa: "/kənˈdʒes.tʃən/", vi: "Tình trạng ùn tắc giao thông" },
+  "catalyst": { ipa: "/ˈkæt.əl.ɪst/", vi: "Chất xúc tác thúc đẩy sự phát triển" },
+  "substantial": { ipa: "/səbˈstæn.ʃəl/", vi: "Đáng kể, to lớn" },
+  "beneficial": { ipa: "/ˌben.ɪˈfɪʃ.əl/", vi: "Có lợi, mang lại hiệu quả tốt" },
+  "tackle": { ipa: "/ˈtæk.əl/", vi: "Giải quyết, đối đầu với bài toán khó" },
+  "crucial": { ipa: "/ˈkruː.ʃəl/", vi: "Cực kỳ quan trọng, sống còn" }
+};
