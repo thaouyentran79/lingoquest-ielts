@@ -185,7 +185,7 @@
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
               <h4 style="font-size: 1.1rem; font-weight: 800; color: var(--bee-dark-amber);">📝 Lời Bài Hát Đục Lỗ:</h4>
               <span id="cloze-progress-badge" style="background: #ffffff; border: 1px solid #fde68a; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 800; font-size: 0.85rem; color: #b45309;">
-                Đã điền: 0 / 4
+                Đã điền: 0 / 8
               </span>
             </div>
 
@@ -198,6 +198,24 @@
               <p style="font-size: 0.85rem; font-weight: 700; color: #92400e; margin-bottom: 0.5rem;">💡 Bấm chọn từ đúng để điền vào chỗ trống:</p>
               <div id="cloze-options-pills" style="display: flex; flex-wrap: wrap; gap: 0.5rem;"></div>
             </div>
+          </div>
+        </div>
+
+        <!-- PHẦN MỚI: GIẢI MÃ TỪ LÓNG & IDIOMS TRONG BÀI HÁT ÁP DỤNG IELTS SPEAKING -->
+        <div class="song-idioms-container" id="song-speaking-idioms-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+              <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--bee-forest); display: flex; align-items: center; gap: 0.5rem;">
+                <span>🗣️</span> <span>Giải Mã Từ Lóng & Idioms Trong Bài Hát (Ứng Dụng IELTS Speaking)</span>
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--bee-text-muted); margin-top: 0.25rem;">Học cách đưa ngay các thành ngữ tự nhiên này vào phần thi IELTS Speaking Part 1, 2, 3 để chinh phục Band 7.5 - 8.5+.</p>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 800; color: #92400e; background: #fef3c7; border: 1px solid #fde68a; padding: 0.3rem 0.8rem; border-radius: 9999px;">
+              Speaking Lexical Resource
+            </span>
+          </div>
+          <div class="song-idiom-grid" id="song-speaking-idioms-grid">
+            <!-- Render danh sách idioms -->
           </div>
         </div>
 
@@ -244,11 +262,19 @@
             <h2 class="bee-sec-title">🎮 Đấu Trường Ghi Nhớ Từ Vựng</h2>
             <p class="bee-sec-desc" style="margin-bottom: 0;">Trò chơi lật thẻ và nối từ lấy trực tiếp từ **Kho từ của Nữ hoàng** hoặc từ bài học hiện tại!</p>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap;">
             <label style="font-size: 0.85rem; font-weight: 700; color: var(--bee-text-muted);">Nguồn từ:</label>
-            <select id="game-vocab-source" onchange="changeGameSource(this.value)" style="padding: 0.4rem 0.8rem; border-radius: 8px; border: 1px solid var(--bee-border); font-weight: 700; color: var(--bee-forest);">
+            <select id="game-vocab-source" onchange="changeGameSource(this.value)" style="padding: 0.45rem 0.85rem; border-radius: 10px; border: 1px solid var(--bee-border); font-weight: 700; color: var(--bee-forest); background: #ffffff;">
               <option value="saved">🍯 Kho từ tôi đã lưu (<span id="source-saved-count">0</span> từ)</option>
-              <option value="curriculum">📚 Từ vựng lộ trình IELTS (24 từ)</option>
+              <option value="all_ielts">🌟 Toàn Bộ 116 Từ IELTS Cốt Lõi (Band 6.5 - 8.5)</option>
+              <option value="tech">🤖 Chủ đề: Công Nghệ & AI (15 từ)</option>
+              <option value="environment">🌱 Chủ đề: Môi Trường & Khí Hậu (15 từ)</option>
+              <option value="business">💼 Chủ đề: Kinh Doanh & Kinh Tế (15 từ)</option>
+              <option value="society">👥 Chủ đề: Xã Hội & Đô Thị (15 từ)</option>
+              <option value="education">🎓 Chủ đề: Giáo Dục & Tri Thức (14 từ)</option>
+              <option value="fashion">👗 Chủ đề: Thời Trang & Phong Cách (14 từ)</option>
+              <option value="health">🏥 Chủ đề: Y Tế & Sức Khỏe (14 từ)</option>
+              <option value="academic">⚖️ Chủ đề: Lập Luận Học Thuật (14 từ)</option>
             </select>
           </div>
         </div>
@@ -457,15 +483,19 @@
         <h4 style="font-size: 1.15rem; color: var(--bee-forest); margin: 1.75rem 0 0.85rem;">💎 Từ Vựng & Cấu Trúc Ăn Điểm:</h4>
         <div id="m-lesson-vocab-list" style="display: flex; flex-direction: column; gap: 0.65rem;"></div>
 
-        <h4 style="font-size: 1.15rem; color: var(--bee-amber); margin: 2rem 0 0.85rem;">🎯 Thử Thách Củng Cố Kiến Thức:</h4>
-        <div style="background: #fdfaf3; border: 1px solid #fde68a; border-radius: 18px; padding: 1.5rem;">
-          <p id="m-lesson-quiz-q" style="font-weight: 800; color: var(--bee-forest); font-size: 1.05rem; margin-bottom: 1rem;">Câu hỏi?</p>
-          <div id="m-lesson-quiz-choices" style="display: flex; flex-direction: column; gap: 0.6rem;"></div>
-          <div id="m-lesson-quiz-msg" style="display: none; margin-top: 1rem; padding: 0.85rem 1.25rem; border-radius: 12px;"></div>
+        <h4 style="font-size: 1.15rem; color: var(--bee-amber); margin: 2rem 0 0.85rem;">🎯 Thử Thách Củng Cố Kiến Thức (5 Câu Trắc Nghiệm):</h4>
+        <div id="m-lesson-multi-quiz-container">
+          <!-- Render 5 câu hỏi trắc nghiệm tự động -->
+        </div>
+        <div id="m-lesson-quiz-score-summary" style="display: none; margin-top: 1.25rem; padding: 1.15rem 1.5rem; border-radius: 16px; text-align: center; font-weight: 700;"></div>
+        <div style="margin-top: 1rem; display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button id="btn-submit-lesson-multi-quiz" class="bee-btn-main" onclick="submitCurrentLessonMultiQuiz()" style="background: var(--bee-forest); padding: 0.65rem 1.5rem;">
+            ✓ Nộp Bài Kiểm Tra & Chấm Điểm
+          </button>
         </div>
       </div>
       <div style="padding: 1.25rem 2rem; background: #f8faf7; border-top: 1px solid var(--bee-border); display: flex; justify-content: flex-end;">
-        <button class="bee-btn-main" style="padding: 0.7rem 1.75rem; font-size: 0.95rem; background: var(--bee-amber);" onclick="finishCurrentIELTSLesson()">
+        <button id="btn-finish-lesson-action" class="bee-btn-main" style="padding: 0.7rem 1.75rem; font-size: 0.95rem; background: var(--bee-amber); opacity: 0.6; cursor: not-allowed;" onclick="finishCurrentIELTSLesson()" disabled>
           <span>✓</span> Hoàn Thành Bài & Nhận XP
         </button>
       </div>
@@ -490,12 +520,36 @@
           <span id="m-news-pub">Hôm nay</span>
         </div>
         <div id="m-news-body" style="font-size: 1.05rem; line-height: 1.85; color: #1f2937;"></div>
+
+        <!-- 3 CÂU HỎI ĐỌC HIỂU CHUẨN FORMAT IELTS READING -->
+        <div class="reading-comprehension-arena" id="m-news-quiz-arena">
+          <div class="reading-comp-header">
+            <div class="reading-comp-title">
+              <span>📖</span> <span>Thử Thách Đọc Hiểu Chuẩn IELTS (3 Câu Hỏi)</span>
+            </div>
+            <span style="font-size: 0.82rem; font-weight: 700; color: #166534; background: #dcfce7; border: 1px solid #86efac; padding: 0.25rem 0.75rem; border-radius: 9999px;">
+              Target Band 7.5+
+            </span>
+          </div>
+          <div id="m-news-quiz-list">
+            <!-- Render 3 câu hỏi đọc hiểu tự động -->
+          </div>
+          <div id="m-news-quiz-result" style="display: none; margin-top: 1.25rem; padding: 1rem 1.25rem; border-radius: 14px; text-align: center; font-weight: 700;"></div>
+          <div style="margin-top: 1rem; display: flex; justify-content: flex-end;">
+            <button id="btn-submit-news-reading-quiz" class="bee-btn-main" onclick="submitNewsReadingQuiz()" style="background: #15803d; padding: 0.65rem 1.5rem;">
+              ✓ Kiểm Tra Đáp Án Đọc Hiểu (+60 XP)
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Nạp dữ liệu và logic điều khiển -->
-  <script src="data.js"></script>
+  <!-- Nạp dữ liệu chuyên sâu và logic điều khiển -->
+  <script src="data-vocab.js"></script>
+  <script src="data-roadmap.js"></script>
+  <script src="data-music.js"></script>
+  <script src="data-news.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

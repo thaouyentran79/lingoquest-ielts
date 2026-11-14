@@ -733,3 +733,181 @@ body {
     padding: 1.5rem 1rem;
   }
 }
+
+/* ===================================================
+   8. CÁC THÀNH PHẦN MỚI CHO BỘ NỘI DUNG NÂNG CAO 2026
+   =================================================== */
+
+/* Bộ câu hỏi trắc nghiệm 5 câu chặng học IELTS */
+.multi-quiz-item {
+  background: #ffffff;
+  border: 1.5px solid var(--bee-border);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.multi-quiz-item:hover {
+  border-color: var(--bee-honey-border);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.08);
+}
+
+.multi-quiz-q-title {
+  font-weight: 800;
+  color: var(--bee-forest);
+  font-size: 1.02rem;
+  line-height: 1.5;
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.multi-quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quiz-option-btn {
+  width: 100%;
+  text-align: left;
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  background: #f8faf7;
+  border: 1.5px solid var(--bee-border);
+  font-family: inherit;
+  font-size: 0.92rem;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.quiz-option-btn:hover {
+  background: #fef3c7;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.quiz-option-btn.selected {
+  background: #fef3c7;
+  border-color: var(--bee-amber);
+  color: var(--bee-dark-amber);
+  font-weight: 700;
+}
+
+.quiz-option-btn.correct-ans {
+  background: #dcfce7 !important;
+  border-color: #10b981 !important;
+  color: #15803d !important;
+  font-weight: 700;
+}
+
+.quiz-option-btn.wrong-ans {
+  background: #fee2e2 !important;
+  border-color: #ef4444 !important;
+  color: #b91c1c !important;
+}
+
+.quiz-feedback-explanation {
+  margin-top: 0.85rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+/* Phần Giải mã Idioms & Từ lóng trong bài hát */
+.song-idioms-container {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #fdfaf3;
+  border: 1.5px solid #fde68a;
+  border-radius: 20px;
+}
+
+.song-idiom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.song-idiom-card {
+  background: #ffffff;
+  border: 1px solid var(--bee-border);
+  border-radius: 14px;
+  padding: 1.15rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+.song-idiom-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--bee-forest);
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.song-idiom-meaning {
+  font-size: 0.88rem;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.song-idiom-speaking-box {
+  background: #f0fdf4;
+  border-left: 3px solid #10b981;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.82rem;
+  color: #166534;
+  line-height: 1.45;
+}
+
+/* Khung 3 câu hỏi Đọc hiểu IELTS Reading ở cuối bài báo */
+.reading-comprehension-arena {
+  margin-top: 2.25rem;
+  padding: 1.75rem;
+  background: #f0fdf4;
+  border: 2px solid #86efac;
+  border-radius: 22px;
+}
+
+.reading-comp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.reading-comp-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #14532d;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Phân loại chủ đề từ vựng trong Mini-games */
+.vocab-category-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  margin-bottom: 0.4rem;
+}
+
