@@ -3,300 +3,1122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LingoQuest IELTS - Lộ Trình Luyện Thi & Tạp Chí Bắt Trend</title>
+  <title>ForumFlash • Lộ trình học & Tạp chí IELTS</title>
   
-  <!-- Phông chữ Google Fonts -->
+  <!-- Phông chữ Google Fonts chuẩn ForumFlash (Plus Jakarta Sans & Outfit) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- CSS Giao diện chuẩn EdTech -->
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Thư viện Pháo hoa ăn mừng miễn phí -->
+  <!-- Thư viện Pháo hoa ăn mừng -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* ===================================================
+       FORUMFLASH DESIGN SYSTEM
+       Tone màu chính xác: Xanh rừng già (#072822 / #0b332c), 
+       nền kem ngà sáng dịu mắt (#f4f6f1), nhấn mint (#6ee7b7) và cam vàng (#f59e0b)
+       =================================================== */
+    :root {
+      --ff-dark-green: #0b332c;
+      --ff-deep-green: #07231e;
+      --ff-mint: #4ade80;
+      --ff-mint-light: #dcfce7;
+      --ff-mint-text: #6ee7b7;
+      --ff-yellow: #facc15;
+      --ff-bg: #f3f5f0;
+      --ff-surface: #ffffff;
+      --ff-border: #e2e8e0;
+      --ff-text-dark: #0f2924;
+      --ff-text-muted: #5d7570;
+      --ff-teal: #0d9488;
+      --ff-red: #ef4444;
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--ff-bg);
+      color: var(--ff-text-dark);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===================================================
+       1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (NAVBAR CHUẨN FORUMFLASH)
+       =================================================== */
+    .ff-navbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--ff-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.85rem 2rem;
+    }
+
+    .ff-nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    /* Logo ForumFlash */
+    .ff-logo-group {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .ff-logo-title {
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: var(--ff-dark-green);
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ff-logo-dot {
+      color: var(--ff-teal);
+    }
+
+    .ff-logo-sub {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--ff-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: -2px;
+    }
+
+    /* Menu giữa với gạch chân cyan chuẩn ảnh mẫu */
+    .ff-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .ff-nav-item {
+      position: relative;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #334e48;
+      cursor: pointer;
+      padding: 0.5rem 0.2rem;
+      transition: color 0.2s;
+    }
+
+    .ff-nav-item:hover {
+      color: var(--ff-dark-green);
+    }
+
+    .ff-nav-item.active {
+      color: var(--ff-dark-green);
+      font-weight: 700;
+    }
+
+    /* Thanh gạch chân màu cyan chuẩn 100% ảnh ForumFlash */
+    .ff-nav-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #0ea5e9;
+      border-radius: 9999px;
+    }
+
+    /* Nút Đăng nhập / Hồ sơ học viên bên phải */
+    .ff-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .ff-streak-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      color: #b45309;
+      padding: 0.35rem 0.8rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .ff-auth-btn {
+      background: var(--ff-dark-green);
+      color: #ffffff;
+      border: none;
+      padding: 0.55rem 1.35rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(11, 51, 44, 0.2);
+    }
+
+    .ff-auth-btn:hover {
+      background: #061c18;
+      transform: translateY(-1px);
+    }
+
+    /* ===================================================
+       2. CONTAINER CHÍNH & HERO BANNER RỪNG GIÀ
+       =================================================== */
+    .ff-main-container {
+      max-width: 1240px;
+      margin: 1.5rem auto 5rem;
+      padding: 0 1.5rem;
+    }
+
+    /* Banner lớn bo tròn 32px chuẩn như ảnh người dùng gửi */
+    .ff-hero-banner {
+      background: linear-gradient(145deg, #07231e, #0b332c);
+      border-radius: 32px;
+      padding: 3.5rem 3.75rem;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(7, 35, 30, 0.25);
+      margin-bottom: 2rem;
+    }
+
+    /* Badge cập nhật nổi ở mép trên */
+    .ff-update-badge {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(14, 74, 65, 0.9);
+      border: 1px solid rgba(110, 231, 183, 0.3);
+      padding: 0.3rem 1.1rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+
+    .ff-update-badge span.action {
+      color: #5eead4;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Nội dung Banner */
+    .ff-hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .ff-hero-headline {
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      margin-bottom: 2.5rem;
+      color: #ffffff;
+    }
+
+    .ff-hero-headline span.accent {
+      color: #5eead4;
+    }
+
+    /* Hàng số liệu (101 bài Grammar, 250 bài Vocabulary, CEFR A1-C2) */
+    .ff-stats-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 3rem;
+    }
+
+    .ff-stat-box h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+      color: #ffffff;
+    }
+
+    .ff-stat-box p {
+      font-size: 0.88rem;
+      color: var(--ff-mint-text);
+      font-weight: 600;
+    }
+
+    /* Minh họa đường ruy-băng vàng và thẻ flashcard nổi */
+    .ff-hero-illustration {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===================================================
+       3. KHUNG TRẮNG LỚN (WHITE CARD CONTAINER) CHUẨN ẢNH MẪU
+       =================================================== */
+    .ff-white-card {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 3rem;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
+      border: 1px solid var(--ff-border);
+      margin-bottom: 2.5rem;
+    }
+
+    .ff-section-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--ff-dark-green);
+      letter-spacing: -0.03em;
+      margin-bottom: 0.4rem;
+    }
+
+    .ff-section-subtitle {
+      font-size: 1.05rem;
+      color: var(--ff-text-muted);
+      margin-bottom: 2.25rem;
+    }
+
+    /* Khung cây tri thức Hạt Giống */
+    .ff-seed-card {
+      background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+      border: 1px solid #bbf7d0;
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .ff-seed-info h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--ff-dark-green);
+      margin-bottom: 0.25rem;
+    }
+
+    .ff-seed-info p {
+      font-size: 0.9rem;
+      color: #166534;
+    }
+
+    .ff-seed-progress {
+      width: 260px;
+    }
+
+    .ff-seed-bar-bg {
+      width: 100%;
+      height: 12px;
+      background: #dcfce7;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+
+    .ff-seed-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #059669);
+      border-radius: 9999px;
+      width: 25%;
+      transition: width 0.5s ease;
+    }
+
+    /* ===================================================
+       4. CÁC CHẶNG LỘ TRÌNH (ROADMAP CHUẨN BAND ĐIỂM)
+       =================================================== */
+    .ff-milestone-block {
+      margin-bottom: 2.5rem;
+    }
+
+    .ff-milestone-title-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .ff-band-pill {
+      background: var(--ff-dark-green);
+      color: #ffffff;
+      padding: 0.35rem 1rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .ff-band-desc {
+      font-size: 0.95rem;
+      color: var(--ff-text-muted);
+      font-weight: 500;
+    }
+
+    /* Lưới bài học */
+    .ff-lessons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .ff-lesson-card {
+      background: #ffffff;
+      border: 1px solid var(--ff-border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .ff-lesson-card:hover:not(.locked) {
+      transform: translateY(-3px);
+      border-color: #059669;
+      box-shadow: 0 10px 25px rgba(5, 150, 105, 0.08);
+    }
+
+    .ff-lesson-card.locked {
+      opacity: 0.6;
+      background: #f8faf7;
+      cursor: not-allowed;
+    }
+
+    .ff-lesson-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .ff-skill-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .ff-lesson-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--ff-dark-green);
+      line-height: 1.45;
+      margin-bottom: 0.3rem;
+    }
+
+    .ff-lesson-card p.summary {
+      font-size: 0.85rem;
+      color: var(--ff-text-muted);
+      line-height: 1.5;
+    }
+
+    .ff-lesson-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid #f1f5f0;
+    }
+
+    .ff-lesson-meta {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .ff-btn-action {
+      background: var(--ff-dark-green);
+      color: #ffffff;
+      border: none;
+      padding: 0.45rem 1.15rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .ff-btn-action:hover {
+      background: #061c18;
+    }
+
+    .ff-btn-action.done {
+      background: #10b981;
+    }
+
+    .ff-btn-action.lock {
+      background: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    /* ===================================================
+       5. VIEW TẠP CHÍ BẮT TREND (BÀI BÁO GIẢI TRÍ NHẶT TỪ)
+       =================================================== */
+    .ff-mag-filters {
+      display: flex;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .ff-mag-filter-btn {
+      background: #ffffff;
+      border: 1px solid var(--ff-border);
+      color: var(--ff-text-muted);
+      padding: 0.55rem 1.35rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+
+    .ff-mag-filter-btn:hover, .ff-mag-filter-btn.active {
+      background: var(--ff-dark-green);
+      color: #ffffff;
+      border-color: var(--ff-dark-green);
+    }
+
+    .ff-articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .ff-article-card {
+      background: #ffffff;
+      border: 1px solid var(--ff-border);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .ff-article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+    }
+
+    .ff-art-thumb-wrap {
+      width: 100%;
+      height: 210px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ff-art-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .ff-article-card:hover .ff-art-thumb-img {
+      transform: scale(1.06);
+    }
+
+    .ff-art-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(11, 51, 44, 0.9);
+      color: #ffffff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
+    }
+
+    .ff-art-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: space-between;
+    }
+
+    .ff-art-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--ff-dark-green);
+      line-height: 1.45;
+      margin-bottom: 0.6rem;
+    }
+
+    .ff-art-desc {
+      font-size: 0.88rem;
+      color: var(--ff-text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .ff-art-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #f1f5f0;
+      padding-top: 0.85rem;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+
+    .ff-read-link {
+      color: var(--ff-teal);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* ===================================================
+       6. NÚT NỔI Ở GÓC DƯỚI BÊN PHẢI (CHUẨN ẢNH FORUMFLASH)
+       =================================================== */
+    .ff-floating-actions {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 90;
+    }
+
+    .ff-float-btn {
+      padding: 0.7rem 1.4rem;
+      border-radius: 9999px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease;
+      color: #ffffff;
+    }
+
+    .ff-float-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Nút đỏ "Sản phẩm" */
+    .ff-btn-product {
+      background: #e11d48;
+    }
+
+    /* Nút teal "Hỗ trợ" */
+    .ff-btn-support {
+      background: #0f766e;
+    }
+
+    /* ===================================================
+       7. CỬA SỔ MODAL ĐỌC BÀI & HỌC BÀI
+       =================================================== */
+    .ff-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(7, 35, 30, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .ff-modal-overlay.open {
+      display: flex;
+    }
+
+    .ff-modal-box {
+      background: #ffffff;
+      border-radius: 28px;
+      width: 100%;
+      max-width: 850px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    }
+
+    .ff-modal-header {
+      padding: 1.35rem 2rem;
+      background: #f8faf7;
+      border-bottom: 1px solid var(--ff-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ff-modal-body {
+      padding: 2rem;
+      overflow-y: auto;
+      flex-grow: 1;
+    }
+
+    .ff-modal-close {
+      background: #e2e8e0;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .ff-modal-close:hover {
+      background: #cbd5e1;
+    }
+
+    /* Bôi nổi từ vựng trong bài báo */
+    .ff-word-highlight {
+      background: #fef08a;
+      color: #854d0e;
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      border-bottom: 2px solid #ca8a04;
+    }
+
+    .ff-word-highlight:hover {
+      background: #fde047;
+    }
+
+    .ff-speech-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #15803d;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .ff-speech-circle:hover {
+      background: #22c55e;
+      color: #fff;
+    }
+
+    /* Ẩn hiện các view */
+    .ff-view-section {
+      display: none;
+    }
+
+    .ff-view-section.active-view {
+      display: block;
+    }
+
+    /* Responsive cho điện thoại */
+    @media (max-width: 768px) {
+      .ff-nav-menu {
+        display: none; /* Mobile menu ẩn gọn */
+      }
+      .ff-hero-banner {
+        padding: 2.25rem 1.5rem;
+      }
+      .ff-hero-headline {
+        font-size: 1.85rem;
+      }
+      .ff-hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .ff-stats-row {
+        gap: 1.5rem;
+      }
+      .ff-white-card {
+        padding: 1.75rem 1.25rem;
+      }
+      .ff-floating-actions {
+        bottom: 16px;
+        right: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ==========================================
-       THANH ĐIỀU HƯỚNG TRÊN CÙNG (NAVBAR)
-       ========================================== -->
-  <nav class="navbar">
-    <div class="nav-container">
+  <!-- ===================================================
+       1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (NAVBAR CHUẨN FORUMFLASH)
+       =================================================== -->
+  <header class="ff-navbar">
+    <div class="ff-nav-inner">
       
-      <!-- Logo thương hiệu -->
-      <div class="logo-brand" onclick="switchMainTab('tab-roadmap')">
-        <div class="logo-badge">👑</div>
+      <!-- Logo ForumFlash / LingoQuest -->
+      <div class="ff-logo-group" onclick="showView('roadmap')">
+        <div class="ff-logo-title">
+          ForumFlash<span class="ff-logo-dot">.</span>
+        </div>
+        <div class="ff-logo-sub">TỪ THE FORUM CENTER • IELTS EDITION</div>
+      </div>
+
+      <!-- Menu giữa với gạch chân Cyan chuẩn mẫu ảnh -->
+      <ul class="ff-nav-menu">
+        <li class="ff-nav-item active" id="nav-item-roadmap" onclick="showView('roadmap')">Lộ trình IELTS</li>
+        <li class="ff-nav-item" id="nav-item-magazine" onclick="showView('magazine')">Tạp chí Bắt Trend</li>
+        <li class="ff-nav-item" id="nav-item-games" onclick="showView('games')">Ôn tập & Mini-games</li>
+        <li class="ff-nav-item" onclick="showView('magazine')">Học liệu</li>
+        <li class="ff-nav-item" onclick="showView('games')">Công cụ</li>
+      </ul>
+
+      <!-- Bên phải: Chuỗi ngày & Nút Đăng nhập -->
+      <div class="ff-nav-right">
+        <div class="ff-streak-badge">
+          <span>🔥</span>
+          <span id="streak-val">3 Ngày</span>
+        </div>
+        <button class="ff-auth-btn">
+          <span>+</span> <span id="user-rank-val">Nữ hoàng (160 XP)</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ===================================================
+       2. KHUNG NỘI DUNG CHÍNH (MAIN WRAPPER)
+       =================================================== -->
+  <main class="ff-main-container">
+
+    <!-- HERO BANNER RỪNG GIÀ (CHUẨN 100% ẢNH MẪU SCREENSHOT 2) -->
+    <div class="ff-hero-banner">
+      
+      <!-- Pill thông báo cập nhật nổi trên đầu banner -->
+      <div class="ff-update-badge">
+        <span>Đã có bản cập nhật mới</span>
+        <span class="action" onclick="location.reload()">Bấm để tải lại</span>
+      </div>
+
+      <div class="ff-hero-grid">
+        
+        <!-- Cột trái: Tiêu đề lớn & 3 Cột số liệu -->
         <div>
-          <div class="logo-name">LingoQuest IELTS</div>
-          <div class="logo-desc">EdTech Roadmap & Magazine</div>
+          <h1 class="ff-hero-headline">
+            Học theo từng chặng,<br>
+            nhớ theo từng bài.
+          </h1>
+
+          <div class="ff-stats-row">
+            <div class="ff-stat-box">
+              <h2>101</h2>
+              <p>bài Grammar</p>
+            </div>
+            <div class="ff-stat-box">
+              <h2>250</h2>
+              <p>bài Vocabulary</p>
+            </div>
+            <div class="ff-stat-box">
+              <h2>IELTS</h2>
+              <p>Band 5.0 - 8.5</p>
+            </div>
+          </div>
         </div>
+
+        <!-- Cột phải: Minh họa đồ họa ruy băng vàng & flashcards -->
+        <div class="ff-hero-illustration">
+          <svg viewBox="0 0 420 220" width="100%" height="100%">
+            <!-- Con đường uốn lượn màu vàng rực rỡ -->
+            <path d="M 20 180 Q 120 40 240 160 T 400 80" fill="none" stroke="#facc15" stroke-width="6" stroke-linecap="round"/>
+            
+            <!-- Các thẻ Flashcard sinh động -->
+            <g transform="translate(60, 90) rotate(-12)">
+              <rect width="64" height="48" rx="10" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.15))"/>
+              <text x="32" y="30" font-size="16" font-weight="bold" fill="#0b332c" text-anchor="middle">apple 🍎</text>
+            </g>
+            <g transform="translate(160, 40) rotate(8)">
+              <rect width="64" height="48" rx="10" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.15))"/>
+              <text x="32" y="30" font-size="16" font-weight="bold" fill="#0b332c" text-anchor="middle">book 📚</text>
+            </g>
+            <g transform="translate(270, 110) rotate(-6)">
+              <rect width="64" height="48" rx="10" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.15))"/>
+              <text x="32" y="30" font-size="16" font-weight="bold" fill="#0b332c" text-anchor="middle">study ✏️</text>
+            </g>
+            <g transform="translate(330, 30) rotate(15)">
+              <rect width="64" height="48" rx="10" fill="#ffffff" filter="drop-shadow(0 4px 10px rgba(0,0,0,0.15))"/>
+              <text x="32" y="30" font-size="16" font-weight="bold" fill="#0b332c" text-anchor="middle">Band 8.0 👑</text>
+            </g>
+          </svg>
+        </div>
+
       </div>
 
-      <!-- 3 Nút chuyển mục chính (Siêu dễ dùng) -->
-      <div class="main-nav-tabs">
-        <button class="nav-tab-btn active" id="btn-tab-roadmap" onclick="switchMainTab('tab-roadmap')">
-          <span>🗺️</span> Lộ Trình IELTS
-        </button>
-        <button class="nav-tab-btn" id="btn-tab-magazine" onclick="switchMainTab('tab-magazine')">
-          <span>📰</span> Tạp Chí Bắt Trend
-        </button>
-        <button class="nav-tab-btn" id="btn-tab-games" onclick="switchMainTab('tab-games')">
-          <span>🎮</span> Đấu Trường Mini-games
-        </button>
+    </div>
+
+    <!-- ===================================================
+         VIEW 1: LỘ TRÌNH IELTS (ROADMAP & HẠT GIỐNG)
+         =================================================== -->
+    <div class="ff-view-section active-view" id="view-roadmap">
+      
+      <!-- Khung trắng lớn bo tròn 32px chuẩn ảnh mẫu -->
+      <div class="ff-white-card">
+        
+        <h2 class="ff-section-title">Hạt giống</h2>
+        <p class="ff-section-subtitle">Mỗi bài hoàn thành bổ sung XP cho cây. Cây lớn dần theo tiến độ của toàn bộ khoá học.</p>
+
+        <!-- Khung tiến độ Hạt giống & Cây tri thức -->
+        <div class="ff-seed-card">
+          <div style="display: flex; align-items: center; gap: 1.25rem;">
+            <div style="font-size: 2.5rem; background: #ffffff; width: 64px; height: 64px; border-radius: 18px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+              🌱
+            </div>
+            <div class="ff-seed-info">
+              <h3>Mầm Cây IELTS: Cấp Độ 2</h3>
+              <p>Nữ hoàng đã tích lũy <b id="seed-xp-text">160 XP</b> • Cần thêm 40 XP để lên cấp tiếp theo!</p>
+            </div>
+          </div>
+          <div class="ff-seed-progress">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: #15803d;">
+              <span>Tiến độ toàn khóa</span>
+              <span id="seed-pct-text">17%</span>
+            </div>
+            <div class="ff-seed-bar-bg">
+              <div class="ff-seed-bar-fill" id="seed-bar-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Danh sách các chặng học chuẩn CEFR / IELTS -->
+        <div id="roadmap-milestones-wrapper">
+          <!-- Sẽ được nạp tự động bởi JavaScript -->
+        </div>
+
       </div>
 
-      <!-- Khung chỉ số người học (Streak, XP, Rank) -->
-      <div class="user-stats">
-        <div class="stat-chip">
-          <span style="color: #f97316;">🔥</span>
-          <span id="header-streak">3 Ngày</span>
+    </div>
+
+    <!-- ===================================================
+         VIEW 2: TẠP CHÍ BẮT TREND (ÂM NHẠC, THỜI TRANG, CÔNG NGHỆ)
+         Trình bày dạng bài báo như Nữ hoàng yêu cầu
+         =================================================== -->
+    <div class="ff-view-section" id="view-magazine">
+      
+      <div class="ff-white-card">
+        <h2 class="ff-section-title">Tạp chí Bắt Trend</h2>
+        <p class="ff-section-subtitle">Đọc bài báo thời trang, công nghệ và nghe nhạc US-UK để nhặt trọn từ vựng học thuật C1-C2 mỗi ngày.</p>
+
+        <!-- Bộ lọc chuyên mục -->
+        <div class="ff-mag-filters">
+          <button class="ff-mag-filter-btn active" onclick="filterMagCategory('all', this)">🌟 Tất cả bài báo</button>
+          <button class="ff-mag-filter-btn" onclick="filterMagCategory('music', this)">🎵 Âm Nhạc US-UK</button>
+          <button class="ff-mag-filter-btn" onclick="filterMagCategory('fashion', this)">👗 Thời Trang & Lifestyle</button>
+          <button class="ff-mag-filter-btn" onclick="filterMagCategory('tech', this)">🚀 Công Nghệ & AI</button>
         </div>
-        <div class="stat-chip">
-          <span style="color: #facc15;">⚡</span>
-          <span id="header-xp">160 XP</span>
-        </div>
-        <div class="stat-chip">
-          <span style="color: #c084fc;">👑</span>
-          <span id="header-rank">Chiến Binh IELTS</span>
+
+        <!-- Lưới bài báo -->
+        <div class="ff-articles-grid" id="mag-articles-grid">
+          <!-- Render tự động bởi JavaScript -->
         </div>
       </div>
 
     </div>
-  </nav>
 
-  <!-- ==========================================
-       KHUNG NỘI DUNG CHÍNH (MAIN WRAPPER)
-       ========================================== -->
-  <main class="main-wrapper">
-
-    <!-- ==========================================
-         VIEW 1: LỘ TRÌNH LUYỆN THI IELTS CHÍNH (ROADMAP)
-         ========================================== -->
-    <section class="view-panel active-view" id="panel-roadmap">
+    <!-- ===================================================
+         VIEW 3: ÔN TẬP MINI-GAMES (FLASHCARD & NỐI TỪ 30S)
+         =================================================== -->
+    <div class="ff-view-section" id="view-games">
       
-      <!-- Banner Tiến độ Lộ trình -->
-      <div class="roadmap-hero-banner">
-        <div class="hero-left">
-          <h1>🎯 Lộ Trình Chinh Phục IELTS (Band 5.0 → 8.5)</h1>
-          <p>Lộ trình rõ ràng, bám sát các dạng bài thi thực tế. Hoàn thành từng bài để mở khóa chặng tiếp theo!</p>
-        </div>
-        <div class="progress-widget">
-          <div class="progress-info">
-            <span>Tiến độ hoàn thành:</span>
-            <span id="roadmap-pct-text" style="color: #38bdf8;">17%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-val" id="roadmap-progress-bar"></div>
-          </div>
-        </div>
-      </div>
+      <div class="ff-white-card">
+        <h2 class="ff-section-title">Ôn tập & Mini-games</h2>
+        <p class="ff-section-subtitle">Thư giãn với trò chơi lật thẻ và nối từ vựng nhanh tay lẹ mắt dưới áp lực thời gian.</p>
 
-      <!-- Danh sách các Chặng Milestone (Nạp tự động từ data.js) -->
-      <div id="roadmap-milestones-container">
-        <!-- Render bởi JavaScript -->
-      </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem;">
+          
+          <!-- Mini-game 1: Flashcard -->
+          <div style="background: #f8faf7; border: 1px solid var(--ff-border); border-radius: 24px; padding: 2rem;">
+            <h3 style="font-size: 1.35rem; color: var(--ff-dark-green); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🃏</span> Flashcard Lật Thẻ
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--ff-text-muted); margin-bottom: 1.5rem;">Chạm vào thẻ để lật xem nghĩa tiếng Việt và ví dụ câu.</p>
 
-    </section>
-
-    <!-- ==========================================
-         VIEW 2: TẠP CHÍ ĐỌC BÁO BẮT TREND (MAGAZINE ARTICLES)
-         Âm nhạc US-UK, Thời trang & Công nghệ
-         ========================================== -->
-    <section class="view-panel" id="panel-magazine">
-      
-      <div class="magazine-header">
-        <h2>📰 Tạp Chí Tiếng Anh Thời Thượng</h2>
-        <p>Lướt báo, nghe nhạc US-UK và cập nhật tin tức công nghệ để nhặt trọn từ vựng học thuật C1-C2 mỗi ngày.</p>
-      </div>
-
-      <!-- Bộ lọc chuyên mục báo chí -->
-      <div class="mag-filters">
-        <button class="mag-filter-btn active" data-cat="all" onclick="filterArticles('all')">
-          <span>🌟</span> Tất cả bài viết
-        </button>
-        <button class="mag-filter-btn" data-cat="music" onclick="filterArticles('music')">
-          <span>🎵</span> Âm Nhạc US-UK
-        </button>
-        <button class="mag-filter-btn" data-cat="fashion" onclick="filterArticles('fashion')">
-          <span>👗</span> Thời Trang & Lifestyle
-        </button>
-        <button class="mag-filter-btn" data-cat="tech" onclick="filterArticles('tech')">
-          <span>🚀</span> Công Nghệ & AI
-        </button>
-      </div>
-
-      <!-- Lưới các bài báo (Articles Grid) -->
-      <div class="articles-grid" id="magazine-articles-grid">
-        <!-- Render bởi JavaScript -->
-      </div>
-
-    </section>
-
-    <!-- ==========================================
-         VIEW 3: ĐẤU TRƯỜNG MINI-GAMES LUYỆN TỪ VỰNG
-         ========================================== -->
-    <section class="view-panel" id="panel-games">
-      
-      <div class="magazine-header" style="margin-bottom: 1.5rem;">
-        <h2>🎮 Đấu Trường Ghi Nhớ Từ Vựng</h2>
-        <p>Vừa chơi vừa nhớ từ vựng siêu tốc với âm thanh vui tai và thử thách áp lực thời gian.</p>
-      </div>
-
-      <div class="games-layout">
-        
-        <!-- Game 1: Flashcard 3D lật thẻ thông minh -->
-        <div class="game-panel-card">
-          <div class="game-panel-title">
-            <span>🃏</span> Flashcard 3D Lật Thẻ
-          </div>
-          <p class="game-panel-desc">Chạm vào thẻ để lật xem nghĩa tiếng Việt & ví dụ thực tế.</p>
-
-          <div class="fc-card-container" onclick="flipActiveCard()">
-            <div class="fc-card-inner" id="fc-card-inner">
-              
-              <!-- Mặt trước thẻ -->
-              <div class="fc-card-face fc-front">
-                <span style="font-size: 0.75rem; color: #a5b4fc; font-weight: 700;">TỪ VỰNG HỌC THUẬT</span>
-                <div>
-                  <div class="fc-word" id="fc-word">Crucial</div>
-                  <div class="fc-ipa" id="fc-ipa">/ˈkruː.ʃəl/</div>
-                </div>
-                <button class="speech-btn-sm" onclick="event.stopPropagation(); speakActiveWord()" title="Nghe phát âm">🔊</button>
+            <div style="background: #ffffff; border: 2px solid #bbf7d0; border-radius: 20px; padding: 2rem; min-height: 220px; display: flex; flex-direction: column; justify-content: space-between; text-align: center; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.03);" onclick="flipSimpleCard()" id="simple-card-box">
+              <span style="font-size: 0.75rem; color: #166534; font-weight: 700;">TỪ VỰNG HỌC THUẬT (BẤM ĐỂ LẬT)</span>
+              <div>
+                <h2 id="card-term" style="font-size: 2.25rem; font-weight: 800; color: var(--ff-dark-green); margin: 0.3rem 0;">Crucial</h2>
+                <p id="card-phonetic" style="font-family: monospace; color: #0d9488; font-size: 1.1rem;">/ˈkruː.ʃəl/</p>
               </div>
-
-              <!-- Mặt sau thẻ -->
-              <div class="fc-card-face fc-back">
-                <span style="font-size: 0.75rem; color: #f472b6; font-weight: 700;">NGHĨA TIẾNG VIỆT & VÍ DỤ</span>
-                <div>
-                  <h3 id="fc-meaning" style="color: #38bdf8; font-size: 1.2rem; margin-bottom: 0.4rem;">Cực kỳ quan trọng</h3>
-                  <p id="fc-example" style="font-size: 0.88rem; color: #e2e8f0; font-style: italic;">"Early preparation is crucial for IELTS."</p>
-                </div>
-                <span style="font-size: 0.75rem; color: #94a3b8;">Chạm để lật lại</span>
+              <div style="display: flex; justify-content: center;">
+                <button class="ff-speech-circle" onclick="event.stopPropagation(); speakCardWord()">🔊</button>
               </div>
+            </div>
 
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem;">
+              <button class="ff-btn-action" onclick="prevCardWord()">← Trước</button>
+              <span id="card-idx-indicator" style="font-weight: 700; color: var(--ff-dark-green); font-size: 0.9rem;">1 / 8</span>
+              <button class="ff-btn-action" onclick="nextCardWord()">Tiếp Theo →</button>
             </div>
           </div>
 
-          <!-- Nút điều khiển lùi / tiến thẻ -->
-          <div class="fc-controls">
-            <button class="mag-filter-btn" onclick="prevCard()">← Từ Trước</button>
-            <span id="fc-counter-text" style="font-size: 0.85rem; font-weight: 600; color: #38bdf8;">Thẻ 1 / 8</span>
-            <button class="mag-filter-btn active" onclick="nextCard()">Từ Tiếp Theo →</button>
-          </div>
-        </div>
+          <!-- Mini-game 2: Nối từ 30s -->
+          <div style="background: #f8faf7; border: 1px solid var(--ff-border); border-radius: 24px; padding: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <h3 style="font-size: 1.35rem; color: var(--ff-dark-green); display: flex; align-items: center; gap: 0.5rem;">
+                <span>⚡</span> Nối Từ Siêu Tốc
+              </h3>
+              <span id="speed-clock" style="background: #fef3c7; color: #b45309; border: 1px solid #fde68a; padding: 0.2rem 0.65rem; border-radius: 9999px; font-weight: 800; font-size: 0.9rem;">30s</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--ff-text-muted); margin-bottom: 1.5rem;">Ghép cặp từ tiếng Anh với nghĩa tiếng Việt tương ứng.</p>
 
-        <!-- Game 2: Nối từ siêu tốc 30 giây -->
-        <div class="game-panel-card">
-          <div class="game-panel-title">
-            <span>⚡</span> Nối Từ Siêu Tốc (30s)
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <p class="game-panel-desc" style="margin-bottom: 0;">Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng.</p>
-            <span id="speed-timer-badge" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.4); padding: 0.2rem 0.6rem; border-radius: 9999px; font-weight: 800; font-size: 0.88rem;">30s</span>
-          </div>
+            <div id="speed-pairs-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem;">
+              <!-- Sẽ render tự động -->
+            </div>
 
-          <!-- Lưới gạch nối từ -->
-          <div class="speed-tiles-grid" id="speed-tiles-grid">
-            <!-- Render bởi JavaScript -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem;">
+              <span id="speed-counter-txt" style="font-size: 0.88rem; font-weight: 700; color: #166534;">Đã nối: 0 / 4</span>
+              <button class="ff-btn-action" onclick="restartSpeedMatch()">🔄 Chơi lại</button>
+            </div>
           </div>
 
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
-            <span id="speed-result-status" style="font-size: 0.85rem; color: #38bdf8;">Đã nối: 0 / 4 cặp</span>
-            <button class="mag-filter-btn" onclick="restartSpeedGame()">🔄 Chơi lại</button>
-          </div>
         </div>
 
       </div>
 
-    </section>
+    </div>
 
   </main>
 
-  <!-- ==========================================
-       MODAL 1: CỬA SỔ HỌC BÀI IELTS CHI TIẾT
-       ========================================== -->
-  <div class="modal-overlay" id="lesson-modal">
-    <div class="modal-box">
-      
-      <div class="modal-header-bar">
+  <!-- ===================================================
+       NÚT NỔI Ở GÓC DƯỚI BÊN PHẢI (CHUẨN 100% ẢNH MẪU SCREENSHOT 2)
+       =================================================== -->
+  <div class="ff-floating-actions">
+    <!-- Nút đỏ "Sản phẩm" -->
+    <button class="ff-float-btn ff-btn-product" onclick="showView('roadmap')">
+      <span>🛍️</span> <span>Sản phẩm</span>
+    </button>
+    <!-- Nút xanh teal "Hỗ trợ" -->
+    <button class="ff-float-btn ff-btn-support" onclick="alert('👑 Trợ lý Bee luôn sẵn sàng đồng hành cùng Nữ hoàng 24/7!')">
+      <span>💬</span> <span>Hỗ trợ</span>
+    </button>
+  </div>
+
+  <!-- ===================================================
+       CỬA SỔ MODAL 1: HỌC BÀI IELTS
+       =================================================== -->
+  <div class="ff-modal-overlay" id="modal-lesson">
+    <div class="ff-modal-box">
+      <div class="ff-modal-header">
         <div>
-          <span id="lesson-modal-badge" style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; text-transform: uppercase;">WRITING & SPEAKING</span>
-          <h3 id="lesson-modal-title">Tiêu Đề Bài Học IELTS</h3>
+          <span id="m-lesson-skill" style="font-size: 0.78rem; font-weight: 700; color: #0d9488; text-transform: uppercase;">WRITING & SPEAKING</span>
+          <h3 id="m-lesson-title" style="font-size: 1.35rem; font-weight: 800; color: var(--ff-dark-green); margin-top: 2px;">Tiêu đề bài học</h3>
         </div>
-        <button class="modal-close-icon" onclick="closeLessonModal()">✕</button>
+        <button class="ff-modal-close" onclick="closeModal('modal-lesson')">✕</button>
       </div>
 
-      <div class="modal-content-scroll">
-        
-        <!-- Nội dung lý thuyết bài học -->
-        <div id="lesson-theory-body"></div>
+      <div class="ff-modal-body">
+        <div id="m-lesson-content" style="line-height: 1.75; font-size: 1rem; color: #1f2937;"></div>
 
-        <!-- Bảng từ vựng trọng tâm của bài -->
-        <h4 style="color: #38bdf8; font-size: 1.1rem; margin: 1.5rem 0 0.75rem;">💎 Từ Vựng & Cấu Trúc Nâng Band:</h4>
-        <div id="lesson-vocab-container" style="display: flex; flex-direction: column; gap: 0.65rem;"></div>
+        <h4 style="font-size: 1.15rem; color: var(--ff-dark-green); margin: 1.75rem 0 0.85rem;">💎 Từ Vựng & Cấu Trúc Nâng Band:</h4>
+        <div id="m-lesson-vocab" style="display: flex; flex-direction: column; gap: 0.65rem;"></div>
 
-        <!-- Bài tập trắc nghiệm củng cố ngay -->
-        <h4 style="color: #f472b6; font-size: 1.1rem; margin: 1.75rem 0 0.75rem;">🎯 Thử Thách Củng Cố Kiến Thức:</h4>
-        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.25rem;">
-          <p id="lesson-quiz-question" style="font-weight: 600; color: #fff; margin-bottom: 1rem;">Câu hỏi trắc nghiệm...</p>
-          <div id="lesson-quiz-options" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
-          <div id="lesson-quiz-feedback" style="margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 10px; display: none;"></div>
+        <h4 style="font-size: 1.15rem; color: #e11d48; margin: 2rem 0 0.85rem;">🎯 Thử Thách Củng Cố Kiến Thức:</h4>
+        <div style="background: #f8faf7; border: 1px solid var(--ff-border); border-radius: 18px; padding: 1.5rem;">
+          <p id="m-lesson-q" style="font-weight: 700; color: #0b332c; font-size: 1.05rem; margin-bottom: 1rem;">Câu hỏi?</p>
+          <div id="m-lesson-opts" style="display: flex; flex-direction: column; gap: 0.6rem;"></div>
+          <div id="m-lesson-feedback" style="display: none; margin-top: 1rem; padding: 0.85rem 1.25rem; border-radius: 12px;"></div>
         </div>
-
       </div>
 
-      <!-- Chân modal có nút Hoàn thành bài -->
-      <div style="padding: 1rem 1.75rem; background: rgba(15, 23, 42, 0.8); border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end;">
-        <button class="lesson-btn btn-start" id="btn-finish-lesson" onclick="finishCurrentLesson()">
-          <span>✓</span> Hoàn Thành Bài & Nhận +40 XP
+      <div style="padding: 1.25rem 2rem; background: #f8faf7; border-top: 1px solid var(--ff-border); display: flex; justify-content: flex-end;">
+        <button class="ff-btn-action" style="padding: 0.7rem 1.75rem; font-size: 0.95rem;" onclick="completeCurrentLessonAction()">
+          <span>✓</span> Hoàn Thành Bài & Nhận XP
         </button>
       </div>
-
     </div>
   </div>
 
-  <!-- ==========================================
-       MODAL 2: CỬA SỔ ĐỌC BÀI BÁO TẠP CHÍ PHÓNG TO
-       ========================================== -->
-  <div class="modal-overlay" id="article-modal">
-    <div class="modal-box">
-      
-      <div class="modal-header-bar">
+  <!-- ===================================================
+       CỬA SỔ MODAL 2: ĐỌC BÀI BÁO TẠP CHÍ
+       =================================================== -->
+  <div class="ff-modal-overlay" id="modal-article">
+    <div class="ff-modal-box">
+      <div class="ff-modal-header">
         <div>
-          <span id="art-modal-category" style="font-size: 0.75rem; color: #38bdf8; font-weight: 700; text-transform: uppercase;">ÂM NHẠC US-UK</span>
-          <h3 id="art-modal-title">Tiêu Đề Bài Báo</h3>
+          <span id="m-art-tag" style="font-size: 0.78rem; font-weight: 700; color: #0d9488; text-transform: uppercase;">ÂM NHẠC US-UK</span>
+          <h3 id="m-art-title" style="font-size: 1.35rem; font-weight: 800; color: var(--ff-dark-green); margin-top: 2px;">Tiêu đề bài báo</h3>
         </div>
-        <button class="modal-close-icon" onclick="closeArticleModal()">✕</button>
+        <button class="ff-modal-close" onclick="closeModal('modal-article')">✕</button>
       </div>
 
-      <div class="modal-content-scroll">
-        
-        <!-- Video Youtube nếu là bài hát -->
-        <div id="art-media-wrapper" style="display: none; margin-bottom: 1.5rem; border-radius: 14px; overflow: hidden; background: #000; position: relative; padding-bottom: 56.25%; height: 0;">
-          <iframe id="art-youtube-frame" style="position: absolute; top:0; left:0; width:100%; height:100%; border:none;" src="" allowfullscreen></iframe>
+      <div class="ff-modal-body">
+        <!-- Khung Video nếu có -->
+        <div id="m-art-video-box" style="display: none; margin-bottom: 1.5rem; border-radius: 18px; overflow: hidden; background: #000; position: relative; padding-bottom: 56.25%; height: 0;">
+          <iframe id="m-art-iframe" style="position: absolute; top:0; left:0; width:100%; height:100%; border:none;" src="" allowfullscreen></iframe>
         </div>
 
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; font-size: 0.85rem; color: var(--text-muted);">
-          <span id="art-modal-author">Tác giả</span>
-          <span id="art-modal-time">3 phút đọc</span>
+        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; color: var(--ff-text-muted); margin-bottom: 1.25rem;">
+          <span id="m-art-author">Tác giả</span>
+          <span id="m-art-readtime">3 phút đọc</span>
         </div>
 
         <!-- Toàn văn bài báo -->
-        <div id="art-modal-content" style="font-size: 1rem; line-height: 1.8; color: #e2e8f0; margin-bottom: 1.5rem;"></div>
+        <div id="m-art-html" style="font-size: 1.05rem; line-height: 1.85; color: #1f2937; margin-bottom: 2rem;"></div>
 
-        <!-- Bảng từ vựng nhặt được từ bài báo -->
-        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.25rem;">
-          <h4 style="color: #38bdf8; font-size: 1.05rem; margin-bottom: 0.75rem;">💎 Từ Vựng IELTS Nổi Bật Trong Bài Báo:</h4>
-          <div id="art-modal-vocab-list" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+        <!-- Bảng từ vựng nhặt được -->
+        <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 18px; padding: 1.5rem;">
+          <h4 style="color: #15803d; font-size: 1.1rem; font-weight: 800; margin-bottom: 0.85rem;">💎 Từ Vựng IELTS Nổi Bật Trong Bài:</h4>
+          <div id="m-art-vocab-list" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
         </div>
-
       </div>
-
     </div>
   </div>
 
-  <!-- Nạp dữ liệu và logic -->
+  <!-- Nạp dữ liệu và logic điều khiển -->
   <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
